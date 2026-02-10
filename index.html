@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mokka | Traditionelle Küche, Modern Serviert</title>
+    
+    <!-- ========================================================================================== -->
+    <!-- ⚠️ DSGVO / GDPR STATUS: NICHT KONFORM (EXTERNE QUELLEN AKTIV)                              -->
+    <!-- Dieser Code lädt aktuell Daten von Google, Unpkg, Unsplash und Google Maps.                -->
+    <!-- Befolgen Sie die Kommentare unten, um dies manuell zu ändern.                              -->
+    <!-- ========================================================================================== -->
+
+    <!-- 1. GOOGLE FONTS -->
+    <!-- Aktueller Status: Lädt von Google Servern (IP-Tracking möglich) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- 
+        ✅ ANLEITUNG ZUR DSGVO-UMSTELLUNG (FONTS):
+        1. Besuchen Sie: https://google-webfonts-helper.herokuapp.com
+        2. Laden Sie "Lato" (300, 400, 700, 900) und "Playfair Display" herunter.
+        3. Entpacken Sie die Dateien in einen Ordner "fonts" neben dieser HTML-Datei.
+        4. Löschen Sie die <link> Zeilen oben.
+        5. Fügen Sie den @font-face Code in den <style> Block ein.
+    -->
+
+
+    <!-- 2. TAILWIND CSS FRAMEWORK -->
+    <!-- Aktueller Status: Lädt Script von CDN (Drittanbieter) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 
+        ✅ ANLEITUNG ZUR DSGVO-UMSTELLUNG (CSS):
+        1. Installieren Sie Tailwind lokal (https://tailwindcss.com/docs/installation).
+        2. Erstellen Sie Ihre CSS-Datei (z.B. "style.css").
+        3. Löschen Sie das <script> oben.
+        4. Nutzen Sie diesen Code: <link rel="stylesheet" href="./style.css">
+    -->
+
+
+    <!-- 3. ICONS (LUCIDE) -->
+    <!-- Aktueller Status: Lädt von unpkg.com -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- 
+        ✅ ANLEITUNG ZUR DSGVO-UMSTELLUNG (ICONS):
+        1. Speichern Sie die Datei von https://unpkg.com/lucide@latest als "lucide.js".
+        2. Legen Sie sie in einen Ordner "js".
+        3. Nutzen Sie diesen Code: <script src="./js/lucide.js"></script>
+    -->
+
+    <!-- 4. GOOGLE MAPS -->
+    <!-- Aktueller Status: iFrame lädt direkt (überträgt IP sofort an Google) -->
+    
+    <!-- 
+        ✅ ANLEITUNG ZUR DSGVO-UMSTELLUNG (KARTE):
+        LÖSUNG (2-Klick-Lösung):
+        1. Erstellen Sie einen Screenshot der Karte ("map-placeholder.jpg").
+        2. Zeigen Sie standardmäßig nur dieses Bild an mit einem "Karte laden" Button.
+        3. Erst beim Klick auf den Button wird das iFrame via JS geladen.
+    -->
+
+
+    <!-- ========================================================================================== -->
+    <!-- 5. BILDER QUELLEN                                                                      -->
+    <!-- ========================================================================================== -->
+    <script id="config">
+        /* ✅ ANLEITUNG ZUR DSGVO-UMSTELLUNG (BILDER):
+           1. Speichern Sie alle Bilder unten lokal in einen Ordner "img".
+           2. Ersetzen Sie den kompletten "const websiteImages" Block durch lokale Pfade.
+        */
+
+        const websiteImages = {
+            // HIER WIEDER IHR BILD-LOGO:
+            logo: "./Unbenannt.PNG", 
+
+            heroBackground: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=2071&auto=format&fit=crop", 
+            heroPattern: "url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=2561&auto=format&fit=crop')", 
+            storyImage: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=1974&auto=format&fit=crop", 
+            parallaxBanner: "url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop')"
+        };
+
+        // Tailwind Farb-Konfiguration
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mokka: {
+                            dark: '#0F0F0F',      /* Fast Schwarz */
+                            charcoal: '#1A1A1A',  /* Dunkelgrau */
+                            coffee: '#2C1810',    /* Tiefes Kaffeebraun */
+                            gold: '#C5A059',      /* Muted Luxury Gold */
+                            cream: '#F5F2EA',     /* Warmes Weiß */
+                            paper: '#FEFDFB'      /* Off White */
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Lato"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': websiteImages.heroPattern,
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Design Hilfsklassen */
+        body {
+            overflow-x: hidden;
+            background-color: #0F0F0F;
+        }
+
+        /* Scrollbar verstecken */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Reveal Animation Klassen */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Parallax Effekt */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Gold Unterstreichung bei Hover */
+        .hover-underline-gold {
+            position: relative;
+        }
+        .hover-underline-gold::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: #C5A059;
+            transition: width 0.3s ease;
+        }
+        .hover-underline-gold:hover::after {
+            width: 100%;
+        }
+
+        ::selection {
+            background: #C5A059;
+            color: #0F0F0F;
+        }
+        
+        /* Map Filter für dunklen Look */
+        .map-filter {
+            filter: grayscale(100%) invert(92%) contrast(83%);
+        }
+
+        /* Modal Styles */
+        .modal {
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        .modal-content {
+            transform: translateY(20px);
+            transition: transform 0.3s ease-out;
+        }
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="text-mokka-paper antialiased">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            
+            <!-- LOGO IMAGE (Zurückgesetzt auf Bilddatei) -->
+            <a href="#" class="block hover:opacity-80 transition-opacity duration-300">
+                <img id="nav-logo" src="" alt="Mokka Logo" class="h-12 w-auto object-contain">
+            </a>
+            
+            <div class="hidden md:flex space-x-12 items-center">
+                <a href="#story" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-white/90">Unsere Geschichte</a>
+                <a href="#process" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-white/90">Handwerk</a>
+                <a href="#location" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-white/90">Standort</a>
+            </div>
+
+            <button class="md:hidden text-white">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 1. HERO SECTION -->
+    <header class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-black/40 z-10"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-[#0F0F0F] z-10"></div>
+            <!-- BILD: Hero -->
+            <img 
+                id="img-hero"
+                src="" 
+                alt="Dunkel geröstete Kaffeebohnen" 
+                class="w-full h-full object-cover animate-[pulse_10s_ease-in-out_infinite] scale-105"
+                style="animation: zoomEffect 20s infinite alternate;"
+            >
+        </div>
+
+        <div class="relative z-20 text-center px-4 max-w-4xl mx-auto mt-16">
+            <p class="reveal text-mokka-gold text-sm md:text-base uppercase tracking-[0.4em] mb-6 font-sans font-light">
+                Traditionelle Küche, Modern Serviert
+            </p>
+            <h1 class="reveal delay-100 font-serif text-6xl md:text-8xl lg:text-9xl text-white leading-none mb-8">
+                Geschaffen für <br> <span class="italic text-white/90">Wahre Genießer</span>
+            </h1>
+            <p class="reveal delay-200 text-gray-300 font-light tracking-wide max-w-lg mx-auto leading-relaxed mb-12">
+                Kleine Chargen, ethisch bezogen und in Perfektion geröstet. 
+                Erleben Sie die Kunst des Kaffees in ihrer reinsten Form.
+            </p>
+            <div class="reveal delay-300">
+                <a href="#story" class="group inline-block px-8 py-4 border border-mokka-gold/50 hover:border-mokka-gold bg-transparent hover:bg-mokka-gold/10 transition-all duration-300">
+                    <span class="text-white text-xs uppercase tracking-[0.2em] group-hover:text-mokka-gold transition-colors">Mehr Erfahren</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-60">
+            <span class="text-[10px] uppercase tracking-[0.3em] text-white/50">Scrollen</span>
+            <div class="w-[1px] h-12 bg-gradient-to-b from-mokka-gold to-transparent"></div>
+        </div>
+    </header>
+
+    <!-- 2. BRAND STORY SECTION -->
+    <section id="story" class="bg-mokka-cream py-32 px-6 md:px-12 text-mokka-coffee">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            
+            <!-- Text Content -->
+            <div class="order-2 md:order-1 reveal">
+                <h2 class="font-serif text-4xl md:text-6xl mb-8 leading-tight">
+                    Tradition in <br><span class="italic text-mokka-gold">Jeder Bohne</span>
+                </h2>
+                <div class="w-12 h-[1px] bg-mokka-coffee/20 mb-8"></div>
+                <p class="font-sans font-light text-lg leading-relaxed text-mokka-coffee/80 mb-6">
+                    Mokka begann mit einer einfachen Philosophie: Kaffee ist keine Routine, sondern ein Ritual. Geboren aus dem Wunsch, die langsame, bewusste Kunst des Röstens zurückzugewinnen, beziehen wir nur die feinsten Mikrolots von hochgelegenen Plantagen.
+                </p>
+                <p class="font-sans font-light text-lg leading-relaxed text-mokka-coffee/80">
+                    Unsere Röstmeister behandeln jede Bohne wie einen Edelstein und entlocken ihr komplexe Geschmacksprofile, die die Geschichte des Bodens, des Regens und der Hände erzählen, die sie geerntet haben.
+                </p>
+            </div>
+
+            <!-- Image -->
+            <div class="order-1 md:order-2 reveal delay-200 relative">
+                <div class="aspect-[3/4] overflow-hidden relative group">
+                    <!-- BILD: Story -->
+                    <img 
+                        id="img-story"
+                        src="" 
+                        alt="Barista gießt Kaffee ein" 
+                        class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                    >
+                    <!-- Gold Frame Effect -->
+                    <div class="absolute top-4 right-4 bottom-4 left-4 border border-white/20 pointer-events-none"></div>
+                </div>
+                <!-- Floating Badge -->
+                <div class="absolute -bottom-6 -left-6 bg-mokka-dark p-6 text-center shadow-2xl hidden md:block">
+                    <p class="text-mokka-gold font-serif text-3xl italic">100%</p>
+                    <p class="text-white text-[10px] uppercase tracking-widest mt-1">Ethischer Handel</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 3. FEATURES/PILLARS SECTION -->
+    <section id="process" class="bg-mokka-dark py-32 px-6 border-y border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 divide-y md:divide-y-0 md:divide-x divide-white/10">
+                
+                <!-- Pillar 1 -->
+                <div class="reveal text-center px-4 py-8 group hover:bg-white/5 transition-colors duration-500 rounded-sm">
+                    <div class="mb-6 flex justify-center text-mokka-gold">
+                        <i data-lucide="map-pin" class="w-8 h-8 font-thin stroke-1"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl text-white mb-4">Single-Origin</h3>
+                    <p class="font-sans font-light text-gray-400 text-sm leading-relaxed max-w-xs mx-auto">
+                        Ausschließlich von nachhaltigen Farmen in Äthiopien, Kolumbien und Costa Rica bezogen. Eine Farm, eine Röstung, purer Geschmack.
+                    </p>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="reveal delay-100 text-center px-4 py-8 group hover:bg-white/5 transition-colors duration-500 rounded-sm">
+                    <div class="mb-6 flex justify-center text-mokka-gold">
+                        <i data-lucide="award" class="w-8 h-8 font-thin stroke-1"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl text-white mb-4">Handwerkskunst</h3>
+                    <p class="font-sans font-light text-gray-400 text-sm leading-relaxed max-w-xs mx-auto">
+                        Geröstet in kleinen Chargen von weniger als 20kg, um eine gleichmäßige Hitzeverteilung und perfekte Karamellisierung zu gewährleisten.
+                    </p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="reveal delay-200 text-center px-4 py-8 group hover:bg-white/5 transition-colors duration-500 rounded-sm">
+                    <div class="mb-6 flex justify-center text-mokka-gold">
+                        <i data-lucide="gem" class="w-8 h-8 font-thin stroke-1"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl text-white mb-4">Purer Genuss</h3>
+                    <p class="font-sans font-light text-gray-400 text-sm leading-relaxed max-w-xs mx-auto">
+                        Keine Zusätze, keine künstlichen Aromen. Nur der ehrliche, reiche und vollmundige Geschmack der Natur.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. VISUAL INTERLUDE (Parallax) -->
+    <section id="banner-parallax" class="h-[60vh] parallax flex items-center justify-center relative">
+        <div class="absolute inset-0 bg-black/60"></div>
+        <div class="relative z-10 text-center max-w-2xl px-6">
+            <i data-lucide="quote" class="w-8 h-8 text-mokka-gold mx-auto mb-6 opacity-80"></i>
+            <h3 class="font-serif text-3xl md:text-5xl text-white leading-tight italic">
+                "Kaffee ist eine Sprache für sich."
+            </h3>
+            <p class="mt-4 text-sm uppercase tracking-widest text-white/70">— Jackie Chan</p>
+        </div>
+    </section>
+
+    <!-- 6. STANDORT / MAP SECTION -->
+    <section id="location" class="bg-mokka-dark py-32 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-16 items-center">
+            
+            <!-- Text Info -->
+            <div class="w-full md:w-1/3 reveal">
+                <h2 class="font-serif text-4xl md:text-5xl text-white mb-6">Besuchen Sie Uns</h2>
+                <div class="w-12 h-[1px] bg-mokka-gold mb-8"></div>
+                <p class="font-sans font-light text-gray-400 mb-8 leading-relaxed">
+                    Erleben Sie unsere Röstungen vor Ort in unserer Manufaktur in Neuwied. Genießen Sie eine Tasse in entspannter Atmosphäre.
+                </p>
+                
+                <div class="space-y-4 font-sans text-sm text-gray-300">
+                    <div class="flex items-start gap-4">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-mokka-gold mt-1"></i>
+                        <p>Mittelstraße 105<br>56564 Neuwied<br>Deutschland</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i data-lucide="clock" class="w-5 h-5 text-mokka-gold"></i>
+                        <p>Mo - Sa: 08:00 - 18:00 Uhr</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i data-lucide="phone" class="w-5 h-5 text-mokka-gold"></i>
+                        <p>015560 330735</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Google Map Iframe (Aktualisiert für Neuwied) -->
+            <div class="w-full md:w-2/3 h-[400px] md:h-[500px] reveal delay-200 border border-white/10 relative overflow-hidden bg-[#1A1A1A]">
+                <iframe 
+                    src="https://maps.google.com/maps?q=Mittelstra%C3%9Fe+105%2C+56564+Neuwied&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    class="map-filter grayscale"
+                ></iframe>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 7. FOOTER -->
+    <footer class="bg-[#0F0F0F] border-t border-white/5 py-16 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start gap-12">
+            
+            <div class="text-center md:text-left">
+                <!-- LOGO IMAGE (Footer Version) -->
+                <a href="#" class="block hover:opacity-80 transition-opacity duration-300">
+                    <img id="footer-logo" src="" alt="Mokka Logo" class="h-12 w-auto object-contain mx-auto md:mx-0">
+                </a>
+                <p class="mt-4 text-gray-500 text-xs tracking-wide">
+                    Neuwied, Deutschland<br>
+                    geg. 2026
+                </p>
+            </div>
+
+            <div class="flex gap-8 text-xs uppercase tracking-widest text-gray-400">
+                <a href="#story" class="hover:text-mokka-gold transition-colors">Über Uns</a>
+                <a href="#location" class="hover:text-mokka-gold transition-colors">Kontakt</a>
+                <!-- LINKS ZU DEN MODALS -->
+                <button onclick="toggleModal('impressum')" class="hover:text-mokka-gold transition-colors text-left uppercase">Impressum</button>
+                <button onclick="toggleModal('datenschutz')" class="hover:text-mokka-gold transition-colors text-left uppercase">Datenschutz</button>
+            </div>
+
+            <div class="flex gap-6">
+                <a href="#" class="text-gray-500 hover:text-mokka-gold transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                <a href="#" class="text-gray-500 hover:text-mokka-gold transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                <a href="#" class="text-gray-500 hover:text-mokka-gold transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+            </div>
+
+        </div>
+        <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/5 text-center flex flex-col md:flex-row justify-between items-center">
+            <p class="text-gray-600 text-[10px] uppercase tracking-widest">© 2026 Mokka Coffee Co. Alle Rechte vorbehalten.</p>
+            <p class="text-gray-600 text-[10px] uppercase tracking-widest mt-2 md:mt-0">Mit Präzision gestaltet.</p>
+        </div>
+    </footer>
+
+    <!-- ========== MODALS (RECHTSTEXTE) ========== -->
+
+    <!-- IMPRESSUM MODAL -->
+    <div id="modal-impressum" class="modal fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 invisible p-4">
+        <div class="modal-content bg-[#1A1A1A] w-full max-w-2xl max-h-[80vh] overflow-y-auto border border-white/10 p-8 md:p-12 shadow-2xl relative">
+            <button onclick="toggleModal('impressum')" class="absolute top-4 right-4 text-white/50 hover:text-mokka-gold transition-colors">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            
+            <h2 class="font-serif text-3xl text-white mb-8">Impressum</h2>
+            <div class="font-sans text-gray-400 text-sm space-y-6 leading-relaxed">
+                <div>
+                    <h3 class="text-white font-bold mb-2">Angaben gemäß § 5 TMG</h3>
+                    <p>Mokka Coffee Co.<br>Mittelstraße 105<br>56564 Neuwied</p>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-2">Kontakt</h3>
+                    <p>Telefon: 015560 330735<br>E-Mail: info@mokka-coffee.de</p>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-2">Umsatzsteuer-ID</h3>
+                    <p>Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz:<br>[Ihre USt-IdNr.]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DATENSCHUTZ MODAL -->
+    <div id="modal-datenschutz" class="modal fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 invisible p-4">
+        <div class="modal-content bg-[#1A1A1A] w-full max-w-2xl max-h-[80vh] overflow-y-auto border border-white/10 p-8 md:p-12 shadow-2xl relative">
+            <button onclick="toggleModal('datenschutz')" class="absolute top-4 right-4 text-white/50 hover:text-mokka-gold transition-colors">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            
+            <h2 class="font-serif text-3xl text-white mb-8">Datenschutzerklärung</h2>
+            <div class="font-sans text-gray-400 text-sm space-y-6 leading-relaxed">
+                <p>Diese Datenschutzerklärung klärt Sie über die Art, den Umfang und Zweck der Verarbeitung von personenbezogenen Daten (nachfolgend kurz „Daten“) innerhalb unseres Onlineangebotes auf.</p>
+                
+                <div>
+                    <h3 class="text-white font-bold mb-2">1. Datenschutz auf einen Blick</h3>
+                    <p>Allgemeine Hinweise: Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie unsere Website besuchen.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-bold mb-2">2. Hosting</h3>
+                    <p>Wir hosten die Inhalte unserer Website bei folgendem Anbieter: [Muster-Hoster].</p>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-bold mb-2">3. Datenerfassung auf unserer Website</h3>
+                    <p><strong>Cookies:</strong> Unsere Internetseiten verwenden so genannte „Cookies“. Cookies sind kleine Textdateien und richten auf Ihrem Endgerät keinen Schaden an.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-bold mb-2">4. Plugins und Tools</h3>
+                    <p><strong>Google Maps:</strong> Diese Seite nutzt den Kartendienst Google Maps. Zur Nutzung der Funktionen von Google Maps ist es notwendig, Ihre IP-Adresse zu speichern. Diese Informationen werden in der Regel an einen Server von Google in den USA übertragen.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Scripts for Interactions -->
+    <script>
+        // BILDER & LOGO LADEN
+        document.addEventListener('DOMContentLoaded', () => {
+            // Bilder
+            document.getElementById('img-hero').src = websiteImages.heroBackground;
+            document.getElementById('img-story').src = websiteImages.storyImage;
+            document.getElementById('banner-parallax').style.backgroundImage = websiteImages.parallaxBanner;
+            
+            // Logos laden (NAV und FOOTER)
+            const logoPath = websiteImages.logo;
+            document.getElementById('nav-logo').src = logoPath;
+            document.getElementById('footer-logo').src = logoPath;
+        });
+
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Reveal Animation Observer
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar Transition
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-mokka-dark/95', 'backdrop-blur-md', 'shadow-lg', 'py-4');
+                navbar.classList.remove('py-6');
+            } else {
+                navbar.classList.remove('bg-mokka-dark/95', 'backdrop-blur-md', 'shadow-lg', 'py-4');
+                navbar.classList.add('py-6');
+            }
+        });
+
+        // Zoom animation for Hero background
+        const styleSheet = document.createElement("style");
+        styleSheet.innerText = `
+            @keyframes zoomEffect {
+                0% { transform: scale(1); }
+                100% { transform: scale(1.1); }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+
+        // MODAL LOGIC
+        function toggleModal(id) {
+            const modal = document.getElementById('modal-' + id);
+            if (!modal) return;
+            
+            if (modal.classList.contains('active')) {
+                // Close
+                modal.classList.remove('active');
+                modal.classList.add('invisible', 'opacity-0');
+                document.body.style.overflow = ''; // Enable scroll
+            } else {
+                // Open
+                modal.classList.remove('invisible', 'opacity-0');
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Disable scroll
+            }
+        }
+    </script>
+</body>
+</html>
