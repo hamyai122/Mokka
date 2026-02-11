@@ -23,7 +23,7 @@
     <!-- 5. BILDER QUELLEN & CONFIG -->
     <script id="config">
         const websiteImages = {
-            logo: "./Unbenannt.png", 
+            logo: "./Unbenannt.PNG", 
             
             // HIER DIE SPEISEKARTEN BILDER EINFÜGEN:
             menuPage1: "./speisekarte1.png",
@@ -42,10 +42,8 @@
                         mokka: {
                             dark: '#0F0F0F',
                             charcoal: '#1A1A1A',
-                            // ZURÜCKGESETZT: Ursprüngliches tiefes Kaffeebraun
-                            coffee: '#2C1810', 
-                            // ZURÜCKGESETZT: Ursprüngliches sattes Gold
-                            gold: '#C5A059', 
+                            coffee: '#231F20', 
+                            gold: '#A69076', 
                             cream: '#F5F2EA',
                             paper: '#FEFDFB'
                         }
@@ -81,11 +79,11 @@
         .hover-underline-gold { position: relative; }
         .hover-underline-gold::after {
             content: ''; position: absolute; width: 0; height: 1px; bottom: -4px; left: 0;
-            background-color: #C5A059; transition: width 0.3s ease;
+            background-color: #A69076; transition: width 0.3s ease;
         }
         .hover-underline-gold:hover::after { width: 100%; }
 
-        ::selection { background: #C5A059; color: #0F0F0F; }
+        ::selection { background: #A69076; color: #0F0F0F; }
         .map-filter { filter: grayscale(100%) invert(92%) contrast(83%); }
         
         /* Utility um Sections auszublenden */
@@ -95,8 +93,8 @@
 <body class="text-mokka-paper antialiased">
 
     <!-- Navigation -->
-    <!-- ZURÜCKGESETZT: bg-mokka-dark/95 statt weiß -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6 px-6 md:px-12 bg-mokka-dark/95 backdrop-blur-md text-white shadow-none">
+    <!-- GEÄNDERT: Wieder weißer Hintergrund und dunkle Schrift -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6 px-6 md:px-12 bg-white/95 backdrop-blur-md text-mokka-coffee shadow-sm">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             
             <!-- LOGO -->
@@ -106,16 +104,16 @@
             
             <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-12 items-center">
-                <!-- REITER: SPEISEKARTE -->
-                <a href="#speisekarte" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-mokka-gold font-bold">Speisekarte</a>
+                <!-- REITER: SPEISEKARTE (Dunkle Schrift) -->
+                <a href="#speisekarte" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee font-bold">Speisekarte</a>
                 
-                <a href="#story" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-white/90">Unsere Geschichte</a>
-                <a href="#process" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-white/90">Handwerk</a>
-                <a href="#location" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-white/90">Standort</a>
+                <a href="#story" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee">Unsere Geschichte</a>
+                <a href="#process" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee">Handwerk</a>
+                <a href="#location" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee">Standort</a>
             </div>
 
-            <!-- Mobile Hamburger Button -->
-            <button class="md:hidden text-white p-2" onclick="toggleMobileMenu()">
+            <!-- Mobile Hamburger Button (Dunkle Schrift) -->
+            <button class="md:hidden text-mokka-coffee p-2" onclick="toggleMobileMenu()">
                 <i data-lucide="menu" class="w-8 h-8"></i>
             </button>
         </div>
@@ -510,4 +508,3 @@
     </script>
 </body>
 </html>
-
