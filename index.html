@@ -11,79 +11,73 @@
     <!-- Befolgen Sie die Kommentare unter den jeweiligen Blöcken, um dies zu beheben.              -->
     <!-- ========================================================================================== -->
 
-    <!-- 1. FONTS (GOOGLE FONTS) -->
-    <!-- ❌ NICHT KONFORM: Lädt von Google Servern -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
+    <!-- 1. FONTS (LOKAL) -->
     <!-- 
-    ✅ DSGVO KONFORME VARIANTE (FONTS):
-    1. Laden Sie die Schriftarten hier herunter: https://google-webfonts-helper.herokuapp.com
-    2. Speichern Sie die .woff2 Dateien in einem Ordner "./fonts/".
-    3. LÖSCHEN Sie die <link> Zeilen oben drüber.
-    4. Fügen Sie stattdessen diesen CSS-Code in den <style> Block weiter unten ein:
-
-    /* --- LATO --- */
-    /* Lato Light (300) */
-    @font-face {
-        font-family: 'Lato';
-        font-style: normal;
-        font-weight: 300;
-        src: url('./fonts/lato-v24-latin-300.woff2') format('woff2');
-    }
-    /* Lato Regular (400) */
-    @font-face {
-        font-family: 'Lato';
-        font-style: normal;
-        font-weight: 400;
-        src: url('./fonts/lato-v24-latin-400.woff2') format('woff2');
-    }
-    /* Lato Bold (700) */
-    @font-face {
-        font-family: 'Lato';
-        font-style: normal;
-        font-weight: 700;
-        src: url('./fonts/lato-v24-latin-700.woff2') format('woff2');
-    }
-    /* Lato Black (900) */
-    @font-face {
-        font-family: 'Lato';
-        font-style: normal;
-        font-weight: 900;
-        src: url('./fonts/lato-v24-latin-900.woff2') format('woff2');
-    }
-
-    /* --- PLAYFAIR DISPLAY --- */
-    /* Playfair Display Regular (400) */
-    @font-face {
-        font-family: 'Playfair Display';
-        font-style: normal;
-        font-weight: 400;
-        src: url('./fonts/playfair-display-v30-latin-400.woff2') format('woff2');
-    }
-    /* Playfair Display Italic (400) */
-    @font-face {
-        font-family: 'Playfair Display';
-        font-style: italic;
-        font-weight: 400;
-        src: url('./fonts/playfair-display-v30-latin-400italic.woff2') format('woff2');
-    }
-    /* Playfair Display SemiBold (600) */
-    @font-face {
-        font-family: 'Playfair Display';
-        font-style: normal;
-        font-weight: 600;
-        src: url('./fonts/playfair-display-v30-latin-600.woff2') format('woff2');
-    }
-    /* Playfair Display Bold (700) */
-    @font-face {
-        font-family: 'Playfair Display';
-        font-style: normal;
-        font-weight: 700;
-        src: url('./fonts/playfair-display-v30-latin-700.woff2') format('woff2');
-    }
+    ✅ DSGVO KONFORM (SCHRIFTARTEN VOM SCREENSHOT):
+    Die folgenden Regeln laden exakt die Dateien, die Sie im Screenshot gezeigt haben.
+    Stellen Sie sicher, dass diese Dateien im Ordner "./fonts/" liegen.
     -->
+    <style>
+        /* --- LATO --- */
+        /* Light (300) -> Lato-Light.ttf */
+        @font-face {
+            font-family: 'Lato';
+            font-style: normal;
+            font-weight: 300;
+            src: url('./fonts/Lato-Light.ttf') format('truetype');
+        }
+        /* Regular (400) -> Lato-Regular.ttf */
+        @font-face {
+            font-family: 'Lato';
+            font-style: normal;
+            font-weight: 400;
+            src: url('./fonts/Lato-Regular.ttf') format('truetype');
+        }
+        /* Bold (700) -> Lato-Bold.ttf */
+        @font-face {
+            font-family: 'Lato';
+            font-style: normal;
+            font-weight: 700;
+            src: url('./fonts/Lato-Bold.ttf') format('truetype');
+        }
+        /* Black (900) -> Lato-Black.ttf */
+        @font-face {
+            font-family: 'Lato';
+            font-style: normal;
+            font-weight: 900;
+            src: url('./fonts/Lato-Black.ttf') format('truetype');
+        }
+
+        /* --- PLAYFAIR DISPLAY --- */
+        /* Regular (400) -> PlayfairDisplay-Regular.ttf */
+        @font-face {
+            font-family: 'Playfair Display';
+            font-style: normal;
+            font-weight: 400;
+            src: url('./fonts/PlayfairDisplay-Regular.ttf') format('truetype');
+        }
+        /* Italic (400) -> PlayfairDisplay-Italic.ttf */
+        @font-face {
+            font-family: 'Playfair Display';
+            font-style: italic;
+            font-weight: 400;
+            src: url('./fonts/PlayfairDisplay-Italic.ttf') format('truetype');
+        }
+        /* SemiBold (600) -> PlayfairDisplay-SemiBold.ttf */
+        @font-face {
+            font-family: 'Playfair Display';
+            font-style: normal;
+            font-weight: 600;
+            src: url('./fonts/PlayfairDisplay-SemiBold.ttf') format('truetype');
+        }
+        /* Bold (700) -> PlayfairDisplay-Bold.ttf */
+        @font-face {
+            font-family: 'Playfair Display';
+            font-style: normal;
+            font-weight: 700;
+            src: url('./fonts/PlayfairDisplay-Bold.ttf') format('truetype');
+        }
+    </style>
 
 
     <!-- 2. CSS FRAMEWORK (TAILWIND) -->
@@ -234,7 +228,7 @@
                 <a href="#location" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee">Standort</a>
             </div>
 
-            <!-- Mobile Hamburger Button -->
+            <!-- Mobile Hamburger Button (Dunkle Schrift) -->
             <button class="md:hidden text-mokka-coffee p-2" onclick="toggleMobileMenu()">
                 <i data-lucide="menu" class="w-8 h-8"></i>
             </button>
