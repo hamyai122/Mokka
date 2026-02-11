@@ -26,8 +26,8 @@
             logo: "./Unbenannt.png", 
             
             // HIER DIE SPEISEKARTEN BILDER EINFÜGEN:
-            menuPage1: "./speisekarte1.png",
-            menuPage2: "./speisekarte2.png",
+            menuPage2: "./speisekarte1.png",
+            menuPage1: "./speisekarte2.png",
 
             // HIER IHR EIGENES HERO-BILD EINFÜGEN:
             heroBackground: "./hero-bild.png", 
@@ -275,19 +275,10 @@
                     </div>
                 </div>
 
-                <!-- Google Map Image Link (DSGVO Konform) -->
-                <div class="w-full md:w-2/3 h-[500px] reveal delay-200 border border-white/10 relative overflow-hidden bg-[#1A1A1A] group">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Mittelstra%C3%9Fe+105%2C+56564+Neuwied" target="_blank" rel="noopener noreferrer" class="block w-full h-full relative">
-                        <!-- Statisches Bild wird hier geladen -->
-                        <img id="img-map" src="" alt="Standort auf Karte anzeigen" class="w-full h-full object-cover map-filter grayscale transition-transform duration-700 group-hover:scale-105">
-                        
-                        <!-- Overlay Button -->
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition-colors">
-                            <span class="bg-mokka-coffee text-white px-6 py-3 uppercase tracking-widest text-xs font-bold border border-mokka-gold/30 hover:bg-mokka-gold hover:text-mokka-coffee transition-colors">
-                                Auf Karte öffnen
-                            </span>
-                        </div>
-                    </a>
+                <!-- Google Map Image (Statisches Bild ohne Link) -->
+                <div class="w-full md:w-2/3 h-[500px] reveal delay-200 border border-white/10 relative overflow-hidden bg-[#1A1A1A]">
+                    <!-- Statisches Bild wird hier geladen -->
+                    <img id="img-map" src="" alt="Standortkarte" class="w-full h-full object-cover map-filter grayscale">
                 </div>
 
             </div>
