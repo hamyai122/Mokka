@@ -6,43 +6,146 @@
     <title>Mokka | Traditionelle Küche, Modern Serviert</title>
     
     <!-- ========================================================================================== -->
-    <!-- ⚠️ DSGVO / GDPR STATUS: NICHT KONFORM (EXTERNE QUELLEN AKTIV)                              -->
+    <!-- ⚠️ DSGVO / GDPR GUIDE: WIE MACHE ICH DIESE DATEI SICHER?                                   -->
+    <!-- Aktuell lädt diese Datei Ressourcen von fremden Servern. Das überträgt IP-Adressen.        -->
+    <!-- Befolgen Sie die Kommentare unter den jeweiligen Blöcken, um dies zu beheben.              -->
     <!-- ========================================================================================== -->
 
-    <!-- 1. FONTS -->
+    <!-- 1. FONTS (GOOGLE FONTS) -->
+    <!-- ❌ NICHT KONFORM: Lädt von Google Servern -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
-    <!-- 2. TAILWIND CSS -->
+    <!-- 
+    ✅ DSGVO KONFORME VARIANTE (FONTS):
+    1. Laden Sie die Schriftarten hier herunter: https://google-webfonts-helper.herokuapp.com
+    2. Speichern Sie die .woff2 Dateien in einem Ordner "./fonts/".
+    3. LÖSCHEN Sie die <link> Zeilen oben drüber.
+    4. Fügen Sie stattdessen diesen CSS-Code in den <style> Block weiter unten ein:
+
+    /* --- LATO --- */
+    /* Lato Light (300) */
+    @font-face {
+        font-family: 'Lato';
+        font-style: normal;
+        font-weight: 300;
+        src: url('./fonts/lato-v24-latin-300.woff2') format('woff2');
+    }
+    /* Lato Regular (400) */
+    @font-face {
+        font-family: 'Lato';
+        font-style: normal;
+        font-weight: 400;
+        src: url('./fonts/lato-v24-latin-400.woff2') format('woff2');
+    }
+    /* Lato Bold (700) */
+    @font-face {
+        font-family: 'Lato';
+        font-style: normal;
+        font-weight: 700;
+        src: url('./fonts/lato-v24-latin-700.woff2') format('woff2');
+    }
+    /* Lato Black (900) */
+    @font-face {
+        font-family: 'Lato';
+        font-style: normal;
+        font-weight: 900;
+        src: url('./fonts/lato-v24-latin-900.woff2') format('woff2');
+    }
+
+    /* --- PLAYFAIR DISPLAY --- */
+    /* Playfair Display Regular (400) */
+    @font-face {
+        font-family: 'Playfair Display';
+        font-style: normal;
+        font-weight: 400;
+        src: url('./fonts/playfair-display-v30-latin-400.woff2') format('woff2');
+    }
+    /* Playfair Display Italic (400) */
+    @font-face {
+        font-family: 'Playfair Display';
+        font-style: italic;
+        font-weight: 400;
+        src: url('./fonts/playfair-display-v30-latin-400italic.woff2') format('woff2');
+    }
+    /* Playfair Display SemiBold (600) */
+    @font-face {
+        font-family: 'Playfair Display';
+        font-style: normal;
+        font-weight: 600;
+        src: url('./fonts/playfair-display-v30-latin-600.woff2') format('woff2');
+    }
+    /* Playfair Display Bold (700) */
+    @font-face {
+        font-family: 'Playfair Display';
+        font-style: normal;
+        font-weight: 700;
+        src: url('./fonts/playfair-display-v30-latin-700.woff2') format('woff2');
+    }
+    -->
+
+
+    <!-- 2. CSS FRAMEWORK (TAILWIND) -->
+    <!-- ❌ NICHT KONFORM: Lädt Script von CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- 3. ICONS -->
+    <!-- 
+    ✅ DSGVO KONFORME VARIANTE (TAILWIND LOKAL - EINFACH):
+    
+    1. Öffnen Sie diesen Link im Browser: https://cdn.tailwindcss.com
+    2. Sie sehen viel Textcode. Drücken Sie STRG + S (Seite speichern unter).
+    3. Nennen Sie die Datei "tailwindcss.js".
+    4. Verschieben Sie diese Datei in Ihren Ordner "js".
+    5. LÖSCHEN Sie das <script src="https://cdn..."> oben drüber.
+    6. Fügen Sie stattdessen diese Zeile ein:
+
+    <script src="./js/tailwindcss.js"></script>
+    -->
+
+
+    <!-- 3. ICONS (LUCIDE) -->
+    <!-- ❌ NICHT KONFORM: Lädt von unpkg.com Servern -->
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- 
+    ✅ DSGVO KONFORME VARIANTE (ICONS):
+    1. Öffnen Sie https://unpkg.com/lucide@latest im Browser.
+    2. Speichern Sie den Textinhalt als Datei "lucide.js".
+    3. Legen Sie die Datei in den Ordner "js".
+    4. Ändern Sie den Code oben zu:
+
+    <script src="./js/lucide.js"></script>
+    -->
 
     <!-- 5. BILDER QUELLEN & CONFIG -->
     <script id="config">
         const websiteImages = {
-            logo: "./Unbenannt.png", 
+            logo: "./img/Unbenannt.png", 
             
             // HIER DIE SPEISEKARTEN BILDER EINFÜGEN:
-            menuPage2: "./speisekarte1.png",
-            menuPage1: "./speisekarte2.png",
+            menuPage1: "./img/speisekarte1.png",
+            menuPage2: "./img/speisekarte2.png",
 
             // HIER IHR EIGENES HERO-BILD EINFÜGEN:
-            heroBackground: "./hero-bild.png", 
+            heroBackground: "./img/hero-bild.png", 
             
             // HIER IHR EIGENES BILD FÜR "UNSERE GESCHICHTE" (KAFFEETASSE):
-            storyImage: "./kaffeetasse.png", 
+            storyImage: "./img/kaffeetasse.png", 
             
             // HIER IHR EIGENES HINTERGRUND-MUSTER (PNG):
-            heroPattern: "./hero-pattern.png", 
+            heroPattern: "./img/hero-pattern.png", 
             
             // HIER IHR EIGENES PARALLAX-BANNER BILD (PNG):
-            parallaxBanner: "./parallax-banner.png",
+            parallaxBanner: "./img/parallax-banner.png",
 
             // HIER IHR STATISCHES BILD DER GOOGLE MAPS KARTE (Screenshot):
-            mapImage: "./google-maps-placeholder.png"
+            mapImage: "./img/google-maps-placeholder.png"
+
+            /* ⚠️ WICHTIG:
+               Erstellen Sie einen Ordner namens "img" neben dieser HTML-Datei 
+               und legen Sie alle oben genannten Bilder dort hinein.
+            */
         };
 
         tailwind.config = {
@@ -106,7 +209,8 @@
 <body class="text-mokka-paper antialiased">
 
     <!-- Navigation -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6 px-6 md:px-12 bg-white/95 backdrop-blur-md text-mokka-coffee shadow-sm">
+    <!-- GEÄNDERT: Exakt gleiches Weiß wie Footer (bg-white), keine Transparenz mehr -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6 px-6 md:px-12 bg-white text-mokka-coffee shadow-sm">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             
             <!-- LOGO -->
@@ -369,15 +473,15 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-[#0F0F0F] border-t border-white/5 py-16 px-6">
+    <footer class="bg-white border-t border-black/5 py-16 px-6 text-mokka-coffee">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start gap-12">
             <div class="text-center md:text-left">
                 <a href="#" onclick="navigateToHome(event)" class="block hover:opacity-80 transition-opacity duration-300">
                     <img id="footer-logo" src="" alt="Mokka Logo" class="h-12 w-auto object-contain mx-auto md:mx-0">
                 </a>
-                <p class="mt-4 text-gray-500 text-xs tracking-wide">Neuwied, Deutschland<br>geg. 2026</p>
+                <p class="mt-4 text-mokka-coffee/70 text-xs tracking-wide">Neuwied, Deutschland<br>geg. 2026</p>
             </div>
-            <div class="flex flex-col md:flex-row gap-8 text-xs uppercase tracking-widest text-gray-400 items-center">
+            <div class="flex flex-col md:flex-row gap-8 text-xs uppercase tracking-widest text-mokka-coffee items-center">
                 <a href="#speisekarte" class="hover:text-mokka-gold transition-colors">Speisekarte</a>
                 <a href="#story" class="hover:text-mokka-gold transition-colors">Über Uns</a>
                 <a href="#location" class="hover:text-mokka-gold transition-colors">Kontakt</a>
@@ -385,14 +489,14 @@
                 <a href="#datenschutz" class="hover:text-mokka-gold transition-colors">Datenschutz</a>
             </div>
             <div class="flex gap-6">
-                <a href="#" class="text-gray-500 hover:text-mokka-gold transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
-                <a href="#" class="text-gray-500 hover:text-mokka-gold transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
-                <a href="#" class="text-gray-500 hover:text-mokka-gold transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                <a href="#" class="text-mokka-coffee/60 hover:text-mokka-gold transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                <a href="#" class="text-mokka-coffee/60 hover:text-mokka-gold transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                <a href="#" class="text-mokka-coffee/60 hover:text-mokka-gold transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/5 text-center flex flex-col md:flex-row justify-between items-center">
-            <p class="text-gray-600 text-[10px] uppercase tracking-widest">© 2026 Mokka Coffee Co. Alle Rechte vorbehalten.</p>
-            <p class="text-gray-600 text-[10px] uppercase tracking-widest mt-2 md:mt-0">Mit Präzision gestaltet.</p>
+        <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-black/5 text-center flex flex-col md:flex-row justify-between items-center">
+            <p class="text-mokka-coffee/50 text-[10px] uppercase tracking-widest">© 2026 Mokka Coffee Co. Alle Rechte vorbehalten.</p>
+            <p class="text-mokka-coffee/50 text-[10px] uppercase tracking-widest mt-2 md:mt-0">Mit Präzision gestaltet.</p>
         </div>
     </footer>
 
