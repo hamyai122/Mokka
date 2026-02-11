@@ -42,8 +42,10 @@
                         mokka: {
                             dark: '#0F0F0F',
                             charcoal: '#1A1A1A',
-                            coffee: '#2C1810',
-                            gold: '#C5A059',
+                            // FARBANPASSUNG: Exakt wie der dunkle Text im Logo
+                            coffee: '#231F20', 
+                            // FARBANPASSUNG: Weniger orange, mehr wie der Papier-Ton (dunkler für Lesbarkeit)
+                            gold: '#A69076', 
                             cream: '#F5F2EA',
                             paper: '#FEFDFB'
                         }
@@ -79,11 +81,11 @@
         .hover-underline-gold { position: relative; }
         .hover-underline-gold::after {
             content: ''; position: absolute; width: 0; height: 1px; bottom: -4px; left: 0;
-            background-color: #C5A059; transition: width 0.3s ease;
+            background-color: #A69076; transition: width 0.3s ease; /* Updated color ref */
         }
         .hover-underline-gold:hover::after { width: 100%; }
 
-        ::selection { background: #C5A059; color: #0F0F0F; }
+        ::selection { background: #A69076; color: #0F0F0F; } /* Updated color ref */
         .map-filter { filter: grayscale(100%) invert(92%) contrast(83%); }
         
         /* Utility um Sections auszublenden */
@@ -93,7 +95,6 @@
 <body class="text-mokka-paper antialiased">
 
     <!-- Navigation -->
-    <!-- GEÄNDERT: bg-white/95 und text-mokka-coffee statt dunkel -->
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6 px-6 md:px-12 bg-white/95 backdrop-blur-md text-mokka-coffee shadow-sm">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             
@@ -104,7 +105,7 @@
             
             <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-12 items-center">
-                <!-- REITER: SPEISEKARTE (Dunkle Schrift) -->
+                <!-- REITER: SPEISEKARTE (Dunkle Schrift, da Hintergrund weiss) -->
                 <a href="#speisekarte" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee font-bold">Speisekarte</a>
                 
                 <a href="#story" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee">Unsere Geschichte</a>
@@ -112,7 +113,7 @@
                 <a href="#location" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee">Standort</a>
             </div>
 
-            <!-- Mobile Hamburger Button (Dunkle Schrift) -->
+            <!-- Mobile Hamburger Button -->
             <button class="md:hidden text-mokka-coffee p-2" onclick="toggleMobileMenu()">
                 <i data-lucide="menu" class="w-8 h-8"></i>
             </button>
@@ -128,9 +129,7 @@
         <div class="flex flex-col space-y-8 text-center">
             <a href="#" onclick="toggleMobileMenu(); navigateToHome(event)" class="font-serif text-3xl text-white hover:text-mokka-gold">Startseite</a>
             
-            <!-- MOBILE LINK: SPEISEKARTE -->
             <a href="#speisekarte" onclick="toggleMobileMenu()" class="font-serif text-3xl text-white hover:text-mokka-gold">Speisekarte</a>
-            
             <a href="#story" onclick="toggleMobileMenu()" class="font-serif text-3xl text-white hover:text-mokka-gold">Geschichte</a>
             <a href="#process" onclick="toggleMobileMenu()" class="font-serif text-3xl text-white hover:text-mokka-gold">Handwerk</a>
             <a href="#location" onclick="toggleMobileMenu()" class="font-serif text-3xl text-white hover:text-mokka-gold">Standort</a>
