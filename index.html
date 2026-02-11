@@ -93,26 +93,27 @@
 <body class="text-mokka-paper antialiased">
 
     <!-- Navigation -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6 px-6 md:px-12 bg-mokka-dark/95 backdrop-blur-md">
+    <!-- GEÄNDERT: bg-white/95 und text-mokka-coffee statt dunkel -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6 px-6 md:px-12 bg-white/95 backdrop-blur-md text-mokka-coffee shadow-sm">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             
             <!-- LOGO -->
-            <a href="#" onclick="navigateToHome()" class="block hover:opacity-80 transition-opacity duration-300">
+            <a href="#" onclick="navigateToHome(event)" class="block hover:opacity-80 transition-opacity duration-300">
                 <img id="nav-logo" src="" alt="Mokka Logo" class="h-12 w-auto object-contain">
             </a>
             
             <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-12 items-center">
-                <!-- NEUER REITER: SPEISEKARTE -->
-                <a href="#speisekarte" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-mokka-gold font-bold">Speisekarte</a>
+                <!-- REITER: SPEISEKARTE (Dunkle Schrift) -->
+                <a href="#speisekarte" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee font-bold">Speisekarte</a>
                 
-                <a href="#story" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-white/90">Unsere Geschichte</a>
-                <a href="#process" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-white/90">Handwerk</a>
-                <a href="#location" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-white/90">Standort</a>
+                <a href="#story" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee">Unsere Geschichte</a>
+                <a href="#process" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee">Handwerk</a>
+                <a href="#location" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee">Standort</a>
             </div>
 
-            <!-- Mobile Hamburger Button -->
-            <button class="md:hidden text-white p-2" onclick="toggleMobileMenu()">
+            <!-- Mobile Hamburger Button (Dunkle Schrift) -->
+            <button class="md:hidden text-mokka-coffee p-2" onclick="toggleMobileMenu()">
                 <i data-lucide="menu" class="w-8 h-8"></i>
             </button>
         </div>
@@ -125,10 +126,10 @@
         </button>
         
         <div class="flex flex-col space-y-8 text-center">
-            <a href="#" onclick="toggleMobileMenu(); navigateToHome()" class="font-serif text-3xl text-white hover:text-mokka-gold">Startseite</a>
+            <a href="#" onclick="toggleMobileMenu(); navigateToHome(event)" class="font-serif text-3xl text-white hover:text-mokka-gold">Startseite</a>
             
             <!-- MOBILE LINK: SPEISEKARTE -->
-            <a href="#speisekarte" onclick="toggleMobileMenu()" class="font-serif text-3xl text-mokka-gold hover:text-white">Speisekarte</a>
+            <a href="#speisekarte" onclick="toggleMobileMenu()" class="font-serif text-3xl text-white hover:text-mokka-gold">Speisekarte</a>
             
             <a href="#story" onclick="toggleMobileMenu()" class="font-serif text-3xl text-white hover:text-mokka-gold">Geschichte</a>
             <a href="#process" onclick="toggleMobileMenu()" class="font-serif text-3xl text-white hover:text-mokka-gold">Handwerk</a>
@@ -303,7 +304,7 @@
             </div>
 
             <div class="mt-16">
-                <a href="#" onclick="navigateToHome()" class="text-mokka-gold hover:text-white transition-colors border-b border-mokka-gold pb-1 text-sm uppercase tracking-widest">← Zurück zur Startseite</a>
+                <a href="#" onclick="navigateToHome(event)" class="text-mokka-gold hover:text-white transition-colors border-b border-mokka-gold pb-1 text-sm uppercase tracking-widest">← Zurück zur Startseite</a>
             </div>
         </div>
     </section>
@@ -311,7 +312,8 @@
     <!-- PAGE: IMPRESSUM -->
     <section id="page-impressum" class="page-hidden pt-32 pb-20 px-6 min-h-screen bg-mokka-dark">
         <div class="max-w-3xl mx-auto">
-            <h1 class="font-serif text-5xl text-white mb-12">Impressum</h1>
+            <!-- KORREKTUR: Responsive Textgröße und Umbruchverhalten -->
+            <h1 class="font-serif text-3xl md:text-5xl text-white mb-8 md:mb-12 break-words hyphens-auto">Impressum</h1>
             <div class="space-y-8 text-gray-400 font-sans font-light">
                 <div class="bg-[#1A1A1A] p-8 border border-white/5">
                     <h3 class="text-white font-bold mb-2">Angaben gemäß § 5 TMG</h3>
@@ -326,7 +328,7 @@
                     <p>Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz:<br>[Ihre USt-IdNr.]</p>
                 </div>
                 <div class="mt-8">
-                    <a href="#" onclick="navigateToHome()" class="text-mokka-gold hover:text-white transition-colors border-b border-mokka-gold pb-1">← Zurück zur Startseite</a>
+                    <a href="#" onclick="navigateToHome(event)" class="text-mokka-gold hover:text-white transition-colors border-b border-mokka-gold pb-1">← Zurück zur Startseite</a>
                 </div>
             </div>
         </div>
@@ -335,7 +337,8 @@
     <!-- PAGE: DATENSCHUTZ -->
     <section id="page-datenschutz" class="page-hidden pt-32 pb-20 px-6 min-h-screen bg-mokka-dark">
         <div class="max-w-3xl mx-auto">
-            <h1 class="font-serif text-5xl text-white mb-12">Datenschutzerklärung</h1>
+            <!-- KORREKTUR: Responsive Textgröße und Umbruchverhalten für lange Wörter -->
+            <h1 class="font-serif text-3xl md:text-5xl text-white mb-8 md:mb-12 break-words hyphens-auto">Datenschutzerklärung</h1>
             <div class="space-y-8 text-gray-400 font-sans font-light">
                 <p>Diese Datenschutzerklärung klärt Sie über die Art, den Umfang und Zweck der Verarbeitung von personenbezogenen Daten (nachfolgend kurz „Daten“) innerhalb unseres Onlineangebotes auf.</p>
                 
@@ -360,7 +363,7 @@
                 </div>
                 
                 <div class="mt-8">
-                    <a href="#" onclick="navigateToHome()" class="text-mokka-gold hover:text-white transition-colors border-b border-mokka-gold pb-1">← Zurück zur Startseite</a>
+                    <a href="#" onclick="navigateToHome(event)" class="text-mokka-gold hover:text-white transition-colors border-b border-mokka-gold pb-1">← Zurück zur Startseite</a>
                 </div>
             </div>
         </div>
@@ -370,7 +373,7 @@
     <footer class="bg-[#0F0F0F] border-t border-white/5 py-16 px-6">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start gap-12">
             <div class="text-center md:text-left">
-                <a href="#" onclick="navigateToHome()" class="block hover:opacity-80 transition-opacity duration-300">
+                <a href="#" onclick="navigateToHome(event)" class="block hover:opacity-80 transition-opacity duration-300">
                     <img id="footer-logo" src="" alt="Mokka Logo" class="h-12 w-auto object-contain mx-auto md:mx-0">
                 </a>
                 <p class="mt-4 text-gray-500 text-xs tracking-wide">Neuwied, Deutschland<br>geg. 2026</p>
@@ -436,33 +439,49 @@
             const datenschutz = document.getElementById('page-datenschutz');
             const menu = document.getElementById('page-menu');
 
-            // Hide all pages first
-            home.classList.add('page-hidden');
-            impressum.classList.add('page-hidden');
-            datenschutz.classList.add('page-hidden');
-            menu.classList.add('page-hidden');
+            // 1. Hide everything first
+            [home, impressum, datenschutz, menu].forEach(el => {
+                if(el) el.classList.add('page-hidden');
+            });
             
-            // Logic to show correct page
+            // 2. Determine active page
             if (hash === '#impressum') {
-                impressum.classList.remove('page-hidden');
+                if(impressum) impressum.classList.remove('page-hidden');
                 window.scrollTo(0, 0);
             } 
             else if (hash === '#datenschutz') {
-                datenschutz.classList.remove('page-hidden');
+                if(datenschutz) datenschutz.classList.remove('page-hidden');
                 window.scrollTo(0, 0);
             }
             else if (hash === '#speisekarte') {
-                menu.classList.remove('page-hidden');
+                if(menu) menu.classList.remove('page-hidden');
                 window.scrollTo(0, 0);
             } 
             else {
-                // Default: Show Home
-                home.classList.remove('page-hidden');
+                // Default: Home
+                if(home) home.classList.remove('page-hidden');
+                
+                // If hash is a section on home (e.g. #story), scroll to it manually
+                // because browser native scroll might fail if element was hidden
+                if (hash && hash !== '#') {
+                    setTimeout(() => {
+                        const section = document.querySelector(hash);
+                        if (section) section.scrollIntoView({behavior: 'smooth'});
+                    }, 10);
+                } 
             }
         }
 
-        function navigateToHome() {
-            window.location.hash = ''; // Clear hash triggers routing to home
+        function navigateToHome(e) {
+            if(e) e.preventDefault(); 
+            // FIX: Verwende window.location.hash statt history.pushState um Fehler in Sandbox zu vermeiden
+            if (window.location.hash !== '') {
+                window.location.hash = ''; // Setzt Hash zurück, löst 'hashchange' aus -> ruft handleRouting() auf
+            } else {
+                // Wenn Hash schon leer ist, manuell Ansicht aktualisieren
+                handleRouting();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         }
 
         // --- 4. ANIMATIONS ---
@@ -473,6 +492,19 @@
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // --- 5. NAVBAR SCROLL (SIMPLIFIED FOR WHITE HEADER) ---
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                // Nur noch Padding/Shadow ändern, nicht die Hintergrundfarbe (bleibt weiß)
+                navbar.classList.add('shadow-lg', 'py-4');
+                navbar.classList.remove('py-6');
+            } else {
+                navbar.classList.remove('shadow-lg', 'py-4');
+                navbar.classList.add('py-6');
+            }
+        });
     </script>
 </body>
 </html>
