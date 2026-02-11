@@ -186,10 +186,18 @@
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         .parallax {
-            background-attachment: fixed;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+            /* Mobile Standard: Scroll (verhindert Zoom-Probleme auf Handys) */
+            background-attachment: scroll;
+        }
+
+        /* Desktop: Fixed (Parallax Effekt nur auf größeren Bildschirmen aktivieren) */
+        @media (min-width: 768px) {
+            .parallax {
+                background-attachment: fixed;
+            }
         }
 
         .hover-underline-gold { position: relative; }
