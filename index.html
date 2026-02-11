@@ -39,7 +39,10 @@
             heroPattern: "./hero-pattern.png", 
             
             // HIER IHR EIGENES PARALLAX-BANNER BILD (PNG):
-            parallaxBanner: "./parallax-banner.png"
+            parallaxBanner: "./parallax-banner.png",
+
+            // HIER IHR STATISCHES BILD DER GOOGLE MAPS KARTE (Screenshot):
+            mapImage: "./google-maps-placeholder.png"
         };
 
         tailwind.config = {
@@ -58,6 +61,9 @@
                     fontFamily: {
                         serif: ['"Playfair Display"', 'serif'],
                         sans: ['"Lato"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': `url('${websiteImages.heroPattern}')`,
                     }
                 }
             }
@@ -100,7 +106,6 @@
 <body class="text-mokka-paper antialiased">
 
     <!-- Navigation -->
-    <!-- GEÄNDERT: Wieder weißer Hintergrund und dunkle Schrift -->
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6 px-6 md:px-12 bg-white/95 backdrop-blur-md text-mokka-coffee shadow-sm">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             
@@ -111,15 +116,13 @@
             
             <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-12 items-center">
-                <!-- REITER: SPEISEKARTE (Dunkle Schrift) -->
                 <a href="#speisekarte" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee font-bold">Speisekarte</a>
-                
                 <a href="#story" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee">Unsere Geschichte</a>
                 <a href="#process" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee">Handwerk</a>
                 <a href="#location" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee">Standort</a>
             </div>
 
-            <!-- Mobile Hamburger Button (Dunkle Schrift) -->
+            <!-- Mobile Hamburger Button -->
             <button class="md:hidden text-mokka-coffee p-2" onclick="toggleMobileMenu()">
                 <i data-lucide="menu" class="w-8 h-8"></i>
             </button>
@@ -134,10 +137,7 @@
         
         <div class="flex flex-col space-y-8 text-center">
             <a href="#" onclick="toggleMobileMenu(); navigateToHome(event)" class="font-serif text-3xl text-white hover:text-mokka-gold">Startseite</a>
-            
-            <!-- MOBILE LINK: SPEISEKARTE -->
             <a href="#speisekarte" onclick="toggleMobileMenu()" class="font-serif text-3xl text-white hover:text-mokka-gold">Speisekarte</a>
-            
             <a href="#story" onclick="toggleMobileMenu()" class="font-serif text-3xl text-white hover:text-mokka-gold">Geschichte</a>
             <a href="#process" onclick="toggleMobileMenu()" class="font-serif text-3xl text-white hover:text-mokka-gold">Handwerk</a>
             <a href="#location" onclick="toggleMobileMenu()" class="font-serif text-3xl text-white hover:text-mokka-gold">Standort</a>
@@ -275,18 +275,19 @@
                     </div>
                 </div>
 
-                <!-- Google Map Iframe -->
-                <div class="w-full md:w-2/3 h-[500px] reveal delay-200 border border-white/10 relative overflow-hidden bg-[#1A1A1A]">
-                    <iframe 
-                        src="https://maps.google.com/maps?q=Mittelstra%C3%9Fe+105%2C+56564+Neuwied&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                        width="100%" 
-                        height="100%" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade"
-                        class="map-filter grayscale"
-                    ></iframe>
+                <!-- Google Map Image Link (DSGVO Konform) -->
+                <div class="w-full md:w-2/3 h-[500px] reveal delay-200 border border-white/10 relative overflow-hidden bg-[#1A1A1A] group">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Mittelstra%C3%9Fe+105%2C+56564+Neuwied" target="_blank" rel="noopener noreferrer" class="block w-full h-full relative">
+                        <!-- Statisches Bild wird hier geladen -->
+                        <img id="img-map" src="" alt="Standort auf Karte anzeigen" class="w-full h-full object-cover map-filter grayscale transition-transform duration-700 group-hover:scale-105">
+                        
+                        <!-- Overlay Button -->
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition-colors">
+                            <span class="bg-mokka-coffee text-white px-6 py-3 uppercase tracking-widest text-xs font-bold border border-mokka-gold/30 hover:bg-mokka-gold hover:text-mokka-coffee transition-colors">
+                                Auf Karte öffnen
+                            </span>
+                        </div>
+                    </a>
                 </div>
 
             </div>
@@ -410,7 +411,8 @@
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('img-hero').src = websiteImages.heroBackground;
             document.getElementById('img-story').src = websiteImages.storyImage;
-            document.getElementById('banner-parallax').style.backgroundImage = websiteImages.parallaxBanner;
+            document.getElementById('banner-parallax').style.backgroundImage = `url('${websiteImages.parallaxBanner}')`;
+            document.getElementById('img-map').src = websiteImages.mapImage;
             document.getElementById('nav-logo').src = websiteImages.logo;
             document.getElementById('footer-logo').src = websiteImages.logo;
             
@@ -515,6 +517,3 @@
     </script>
 </body>
 </html>
-
-
-
