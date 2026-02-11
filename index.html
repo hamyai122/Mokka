@@ -2,15 +2,12 @@
 <html lang="de" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Mokka | Traditionelle Küche, Modern Serviert</title>
     
-    <!-- ========================================================================================== -->
-    <!-- ⚠️ DSGVO HINWEIS FÜR PRODUKTION:                                                           -->
-    <!-- Um eine Abmahnung zu vermeiden, müssen Tailwind und Lucide für die Live-Schaltung          -->
-    <!-- lokal gehostet werden (wie zuvor besprochen). Für die Vorschau hier nutzen wir CDNs.      -->
-    <!-- ========================================================================================== -->
+    <!-- ⚖️ DSGVO-HINWEIS: In Produktion Skripte lokal hosten! -->
 
+    <!-- 1. CSS FRAMEWORK -->
     <script src="./js/tailwindcss.js"></script>
     <script src="./js/lucide.js"></script>
 
@@ -27,7 +24,6 @@
             mapImage: "./img/google-maps-placeholder.png"
         };
 
-        // Tailwind Konfiguration
         window.tailwind.config = {
             theme: {
                 extend: {
@@ -42,8 +38,8 @@
                         }
                     },
                     fontFamily: {
-                        serif: ['ui-serif', 'Georgia', 'serif'],
-                        sans: ['ui-sans-serif', 'system-ui', 'sans-serif'],
+                        serif: ['ui-serif', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
+                        sans: ['ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
                     },
                     backgroundImage: {
                         'hero-pattern': `url('${websiteImages.heroPattern}')`,
@@ -54,186 +50,320 @@
     </script>
 
     <style>
-        body { overflow-x: hidden; background-color: #0F0F0F; font-family: ui-sans-serif, system-ui, sans-serif !important; }
-        h1, h2, h3, h4, .font-serif { font-family: ui-serif, Georgia, serif !important; }
+        /* Mobile Fixes für Android */
+        :root {
+            --vh: 1vh;
+        }
+
+        body { 
+            overflow: hidden; 
+            background-color: #0F0F0F; 
+            font-family: ui-sans-serif, system-ui, sans-serif !important;
+            -webkit-tap-highlight-color: transparent; /* Entfernt blauen Kasten beim Klicken auf Android */
+        }
+
+        h1, h2, h3, h4, .font-serif { 
+            font-family: ui-serif, Georgia, serif !important; 
+        }
+
+        /* Intro Animation */
+        #intro-overlay {
+            background-color: #0F0F0F;
+            height: 100vh;
+            height: calc(var(--vh, 1vh) * 100);
+            transition: opacity 1s cubic-bezier(0.7, 0, 0.3, 1), transform 1s cubic-bezier(0.7, 0, 0.3, 1);
+        }
+
+        .letter-animate {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(10px);
+            filter: blur(5px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .letter-animate.active {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        #intro-line {
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1);
+        }
+
+        /* Content Reveal */
+        #main-content {
+            opacity: 0;
+            transition: opacity 1.2s ease;
+            display: none;
+        }
+
+        #main-content.layout-ready { display: block; }
+        #main-content.visible { opacity: 1; }
+
+        /* Utilities */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        
+        .reveal { 
+            opacity: 0; 
+            transform: translateY(20px); 
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
+        }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        .parallax { background-position: center; background-repeat: no-repeat; background-size: cover; background-attachment: scroll; }
-        @media (min-width: 768px) { .parallax { background-attachment: fixed; } }
+
+        /* Parallax Fix für Mobile Android/iOS */
+        .parallax { 
+            background-position: center; 
+            background-repeat: no-repeat; 
+            background-size: cover; 
+            background-attachment: scroll; 
+        }
+        @media (min-width: 1024px) { 
+            .parallax { background-attachment: fixed; } 
+        }
+
         .hover-underline-gold { position: relative; }
-        .hover-underline-gold::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -4px; left: 0; background-color: #A69076; transition: width 0.3s ease; }
+        .hover-underline-gold::after { 
+            content: ''; position: absolute; width: 0; height: 1px; bottom: -4px; left: 0; 
+            background-color: #A69076; transition: width 0.3s ease; 
+        }
         .hover-underline-gold:hover::after { width: 100%; }
+        
         .map-filter { filter: grayscale(100%) invert(92%) contrast(83%); }
         .page-hidden { display: none !important; }
+
+        /* Android Browser Height Fix */
+        .min-h-screen-fix {
+            min-height: 100vh;
+            min-height: calc(var(--vh, 1vh) * 100);
+        }
     </style>
 </head>
 <body class="text-mokka-paper antialiased">
 
-    <!-- Navigation -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6 px-6 md:px-12 bg-white text-mokka-coffee shadow-sm">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="#" onclick="navigateToHome(event)" class="block hover:opacity-80 transition-opacity duration-300">
-                <img id="nav-logo" src="" alt="Mokka Logo" class="h-12 w-auto object-contain">
-            </a>
-            <div class="hidden md:flex space-x-12 items-center">
-                <a href="#speisekarte" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee font-bold">Speisekarte</a>
-                <a href="#story" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee">Unsere Geschichte</a>
-                <a href="#process" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee">Handwerk</a>
-                <a href="#location" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee">Standort</a>
+    <!-- INTRO OVERLAY -->
+    <div id="intro-overlay" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#0F0F0F]">
+        <div class="text-center px-4">
+            <div class="mb-4">
+                <h1 class="font-serif text-3xl md:text-5xl lg:text-6xl text-white tracking-[0.2em] md:tracking-[0.3em]">
+                    <span class="letter-animate">M</span>
+                    <span class="letter-animate">O</span>
+                    <span class="letter-animate">K</span>
+                    <span class="letter-animate">K</span>
+                    <span class="letter-animate">A</span>
+                </h1>
             </div>
-            <button class="md:hidden text-mokka-coffee p-2" onclick="toggleMobileMenu()">
-                <i data-lucide="menu" class="w-8 h-8"></i>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="fixed inset-0 bg-[#0F0F0F] z-[100] transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center">
-        <button onclick="toggleMobileMenu()" class="absolute top-8 right-8 text-white/50 hover:text-white">
-            <i data-lucide="x" class="w-10 h-10"></i>
-        </button>
-        <div class="flex flex-col space-y-8 text-center">
-            <a href="#" onclick="toggleMobileMenu(); navigateToHome(event)" class="text-3xl text-white hover:text-mokka-gold">Startseite</a>
-            <a href="#speisekarte" onclick="toggleMobileMenu()" class="text-3xl text-white hover:text-mokka-gold">Speisekarte</a>
-            <a href="#story" onclick="toggleMobileMenu()" class="text-3xl text-white hover:text-mokka-gold">Geschichte</a>
-            <a href="#location" onclick="toggleMobileMenu()" class="text-3xl text-white hover:text-mokka-gold">Standort</a>
-            <div class="w-12 h-[1px] bg-white/20 mx-auto my-4"></div>
-            <a href="#impressum" onclick="toggleMobileMenu()" class="text-sm uppercase tracking-widest text-white/60">Impressum</a>
-            <a href="#datenschutz" onclick="toggleMobileMenu()" class="text-sm uppercase tracking-widest text-white/60">Datenschutz</a>
+            <div id="intro-line" class="h-[1px] bg-mokka-gold w-24 md:w-48 mx-auto mb-6"></div>
+            <p id="intro-tagline" class="text-mokka-gold uppercase tracking-[0.4em] text-[8px] md:text-[10px] opacity-0 transition-all duration-1000 translate-y-4">
+                Traditionelle Küche • Modern Serviert
+            </p>
         </div>
     </div>
 
-    <main id="page-home">
-        <!-- Hero -->
-        <header class="relative min-h-screen w-full flex flex-col items-center justify-center pt-32 pb-16">
-            <div class="absolute inset-0 z-0">
-                <div class="absolute inset-0 bg-black/70 z-10"></div>
-                <img id="img-hero" src="" alt="Hero Hintergrund" class="w-full h-full object-cover">
-            </div>
-            <div class="relative z-20 text-center px-4 max-w-4xl mx-auto">
-                <p class="reveal text-mokka-gold text-sm md:text-lg uppercase tracking-[0.25em] mb-6 font-bold">Traditionelle Küche, Modern Serviert</p>
-                <h1 class="reveal delay-100 text-5xl md:text-7xl lg:text-8xl text-white leading-none mb-6">Geschaffen für <br> <span class="italic text-white/90">Wahre Genießer</span></h1>
-                <p class="reveal delay-200 text-gray-300 text-sm md:text-base font-light tracking-wide max-w-lg mx-auto leading-relaxed mb-10">Kleine Chargen, ethisch bezogen und in Perfektion geröstet. Erleben Sie die Kunst des Kaffees in ihrer reinsten Form.</p>
-                <div class="reveal delay-300">
-                    <a href="#story" class="group inline-block px-8 py-4 border border-mokka-gold/50 hover:border-mokka-gold bg-transparent transition-all">
-                        <span class="text-white text-xs uppercase tracking-[0.2em]">Mehr Erfahren</span>
-                    </a>
+    <!-- HAUPTINHALT -->
+    <div id="main-content">
+        <!-- Navigation -->
+        <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-4 md:py-6 px-6 md:px-12 bg-white text-mokka-coffee shadow-sm">
+            <div class="max-w-7xl mx-auto flex justify-between items-center">
+                <a href="#" onclick="navigateToHome(event)" class="block hover:opacity-80 transition-opacity duration-300">
+                    <img id="nav-logo" src="" alt="Mokka Logo" class="h-10 md:h-12 w-auto object-contain">
+                </a>
+                <div class="hidden md:flex space-x-12 items-center font-sans">
+                    <a href="#speisekarte" class="text-[10px] uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee font-bold">Speisekarte</a>
+                    <a href="#story" class="text-[10px] uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee">Geschichte</a>
+                    <a href="#process" class="text-[10px] uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee">Handwerk</a>
+                    <a href="#location" class="text-[10px] uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee">Standort</a>
                 </div>
+                <!-- Mobile Button mit größerem Touch-Target -->
+                <button class="md:hidden text-mokka-coffee p-3 -mr-3" onclick="toggleMobileMenu()">
+                    <i data-lucide="menu" class="w-7 h-7"></i>
+                </button>
             </div>
-        </header>
+        </nav>
 
-        <!-- Story -->
-        <section id="story" class="bg-mokka-cream py-32 px-6 text-mokka-coffee">
-            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                <div class="order-2 md:order-1 reveal">
-                    <h2 class="text-4xl md:text-6xl mb-8 leading-tight font-serif">Tradition in <br><span class="italic text-mokka-gold">Jeder Bohne</span></h2>
-                    <p class="font-light text-lg leading-relaxed text-mokka-coffee/80 mb-6">Ein Erlebnis für die Sinne, tief verwurzelt in der Liebe zum Detail. Mokka steht für authentischen Genuss und traditionelle Röstung.</p>
-                </div>
-                <div class="order-1 md:order-2 reveal delay-200 relative">
-                    <div class="aspect-[3/4] overflow-hidden relative group">
-                        <img id="img-story" src="" alt="Geschichte" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="fixed inset-0 bg-[#0F0F0F] z-[100] transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center">
+            <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-white/50 p-4">
+                <i data-lucide="x" class="w-9 h-9"></i>
+            </button>
+            <div class="flex flex-col space-y-10 text-center">
+                <a href="#" onclick="toggleMobileMenu(); navigateToHome(event)" class="text-3xl text-white">Startseite</a>
+                <a href="#speisekarte" onclick="toggleMobileMenu()" class="text-3xl text-white font-serif italic text-mokka-gold">Speisekarte</a>
+                <a href="#story" onclick="toggleMobileMenu()" class="text-3xl text-white">Geschichte</a>
+                <a href="#location" onclick="toggleMobileMenu()" class="text-3xl text-white">Standort</a>
+                <div class="w-12 h-[1px] bg-white/20 mx-auto my-2"></div>
+                <a href="#impressum" onclick="toggleMobileMenu()" class="text-sm uppercase tracking-widest text-white/60">Impressum</a>
+                <a href="#datenschutz" onclick="toggleMobileMenu()" class="text-sm uppercase tracking-widest text-white/60">Datenschutz</a>
+            </div>
+        </div>
+
+        <div id="pages-wrapper">
+            <main id="page-home">
+                <!-- HERO -->
+                <header id="hero" class="relative min-h-screen-fix w-full flex flex-col items-center justify-center overflow-hidden pt-20 pb-16">
+                    <div class="absolute inset-0 z-0">
+                        <div class="absolute inset-0 bg-black/70 z-10"></div>
+                        <img id="img-hero" src="" alt="Hero" class="w-full h-full object-cover">
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Location -->
-        <section id="location" class="bg-mokka-dark py-32 px-6">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-16">
-                <div class="w-full md:w-1/3 reveal">
-                    <h2 class="text-4xl md:text-5xl text-white mb-6 font-serif">Besuchen Sie Uns</h2>
-                    <div class="w-12 h-[1px] bg-mokka-gold mb-8"></div>
-                    <p class="text-gray-400 mb-8">Erleben Sie unsere Röstungen vor Ort in Neuwied.</p>
-                    <div class="flex items-start gap-4 mb-8">
-                        <i data-lucide="map-pin" class="w-5 h-5 text-mokka-gold mt-1"></i>
-                        <p class="text-gray-300 text-sm">Mittelstraße 105<br>56564 Neuwied<br>Deutschland</p>
+                    <div class="relative z-20 text-center px-6 max-w-4xl mx-auto">
+                        <p class="reveal text-mokka-gold text-xs md:text-lg uppercase tracking-[0.25em] mb-4 font-bold">Traditionelle Küche, Modern Serviert</p>
+                        <h1 class="reveal delay-100 text-4xl md:text-7xl lg:text-8xl text-white leading-tight mb-6 font-serif">Geschaffen für <br> <span class="italic text-white/90">Wahre Genießer</span></h1>
+                        <p class="reveal delay-200 text-gray-300 text-sm md:text-base font-light tracking-wide max-w-lg mx-auto leading-relaxed mb-10">Kleine Chargen, ethisch bezogen und in Perfektion geröstet.</p>
+                        <div class="reveal delay-300">
+                            <a href="#story" class="group inline-block px-8 py-4 border border-mokka-gold/50 hover:border-mokka-gold bg-transparent transition-all duration-300">
+                                <span class="text-white text-xs uppercase tracking-[0.2em] group-hover:text-mokka-gold">Unsere Geschichte</span>
+                            </a>
+                        </div>
                     </div>
-                    <div class="grid gap-4">
-                        <a href="tel:015560330735" class="bg-[#1A1A1A] p-6 border border-white/10 text-white hover:border-mokka-gold transition-colors flex items-center gap-4">
-                            <i data-lucide="phone" class="text-mokka-gold"></i>
-                            <span>015560 330735</span>
-                        </a>
-                        <a href="mailto:info@mokka-coffee.de" class="bg-[#1A1A1A] p-6 border border-white/10 text-white hover:border-mokka-gold transition-colors flex items-center gap-4">
-                            <i data-lucide="mail" class="text-mokka-gold"></i>
-                            <span>info@mokka-coffee.de</span>
-                        </a>
+                </header>
+
+                <!-- STORY -->
+                <section id="story" class="bg-mokka-cream py-20 md:py-32 px-6 md:px-12 text-mokka-coffee overflow-hidden">
+                    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                        <div class="reveal">
+                            <h2 class="text-3xl md:text-6xl mb-6 md:mb-8 leading-tight font-serif">Tradition in <br><span class="italic text-mokka-gold">Jeder Bohne</span></h2>
+                            <div class="w-12 h-[1px] bg-mokka-coffee/20 mb-8"></div>
+                            <p class="font-light text-base md:text-lg leading-relaxed text-mokka-coffee/80 mb-6">Mokka begann mit einer einfachen Philosophie: Kaffee ist keine Routine, sondern ein Ritual. Geboren aus dem Wunsch, die langsame Kunst des Röstens zurückzugewinnen.</p>
+                            <p class="font-light text-base md:text-lg leading-relaxed text-mokka-coffee/80">Jede Tasse erzählt die Geschichte der Bauern und unserer Leidenschaft für unverfälschte Qualität.</p>
+                        </div>
+                        <div class="reveal delay-200 relative">
+                            <div class="aspect-[4/5] md:aspect-[3/4] overflow-hidden relative group rounded-sm shadow-2xl">
+                                <img id="img-story" src="" alt="Story" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                                <div class="absolute inset-4 border border-white/20 pointer-events-none"></div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="w-full md:w-2/3 h-[450px] border border-white/10 overflow-hidden bg-[#1A1A1A]">
-                    <img id="img-map" src="" alt="Standortkarte" class="w-full h-full object-cover map-filter grayscale">
-                </div>
-            </div>
-        </section>
-    </main>
+                </section>
 
-    <!-- PAGE: SPEISEKARTE -->
-    <section id="page-menu" class="page-hidden pt-32 pb-20 px-4 min-h-screen bg-mokka-dark flex flex-col items-center">
-        <h1 class="text-5xl text-white mb-12 font-serif">Speisekarte</h1>
-        <div class="flex flex-col gap-8 w-full max-w-4xl">
-            <img id="img-menu-1" src="" alt="Menü Seite 1" class="w-full h-auto border border-white/5 shadow-2xl">
-            <img id="img-menu-2" src="" alt="Menü Seite 2" class="w-full h-auto border border-white/5 shadow-2xl">
-        </div>
-        <div class="mt-12">
-            <a href="#" onclick="navigateToHome(event)" class="text-mokka-gold border-b border-mokka-gold pb-1 uppercase tracking-widest text-xs">← Zurück zur Startseite</a>
-        </div>
-    </section>
+                <!-- PROCESS -->
+                <section id="process" class="bg-mokka-dark py-20 md:py-32 px-6 border-y border-white/5">
+                    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 text-center divide-y md:divide-y-0 md:divide-x divide-white/10">
+                        <div class="reveal py-8 md:py-0 px-4">
+                            <div class="mb-6 flex justify-center text-mokka-gold"><i data-lucide="map-pin" class="w-8 h-8 font-thin"></i></div>
+                            <h3 class="text-xl md:text-2xl text-white mb-4 font-serif">Single-Origin</h3>
+                            <p class="text-gray-400 text-sm max-w-xs mx-auto leading-relaxed">Ausschließlich von nachhaltigen Farmen bezogen.</p>
+                        </div>
+                        <div class="reveal delay-100 py-8 md:py-0 px-4">
+                            <div class="mb-6 flex justify-center text-mokka-gold"><i data-lucide="award" class="w-8 h-8 font-thin"></i></div>
+                            <h3 class="text-xl md:text-2xl text-white mb-4 font-serif">Handwerkskunst</h3>
+                            <p class="text-gray-400 text-sm max-w-xs mx-auto leading-relaxed">Geröstet in kleinen Chargen für maximale Frische.</p>
+                        </div>
+                        <div class="reveal delay-200 py-8 md:py-0 px-4">
+                            <div class="mb-6 flex justify-center text-mokka-gold"><i data-lucide="gem" class="w-8 h-8 font-thin"></i></div>
+                            <h3 class="text-xl md:text-2xl text-white mb-4 font-serif">Purer Genuss</h3>
+                            <p class="text-gray-400 text-sm max-w-xs mx-auto leading-relaxed">Keine Zusätze, nur das reine Aroma der Natur.</p>
+                        </div>
+                    </div>
+                </section>
 
-    <!-- PAGE: IMPRESSUM -->
-    <section id="page-impressum" class="page-hidden pt-32 pb-20 px-6 min-h-screen bg-mokka-dark">
-        <div class="max-w-3xl mx-auto">
-            <h1 class="text-3xl md:text-5xl text-white mb-12 font-serif">Impressum</h1>
-            <div class="space-y-8 text-gray-400">
-                <div class="bg-[#1A1A1A] p-8 border border-white/5">
-                    <h3 class="text-white font-bold mb-2">Angaben gemäß § 5 TMG</h3>
-                    <p>Mokka Coffee [Rechtsform ergänzen, z.B. Einzelunternehmen]<br>Mittelstraße 105<br>56564 Neuwied</p>
-                    <p class="mt-4"><strong>Vertreten durch:</strong><br>[Vorname Nachname]</p>
+                <!-- BANNER -->
+                <section id="banner-parallax" class="h-[50vh] md:h-[60vh] parallax flex items-center justify-center relative">
+                    <div class="absolute inset-0 bg-black/60"></div>
+                    <div class="relative z-10 text-center max-w-2xl px-6">
+                        <i data-lucide="quote" class="w-7 h-7 text-mokka-gold mx-auto mb-6 opacity-80"></i>
+                        <h3 class="text-2xl md:text-5xl text-white leading-tight italic font-serif">"Kaffee ist eine Sprache für sich."</h3>
+                        <p class="mt-4 text-[10px] md:text-sm uppercase tracking-widest text-white/70">— Jackie Chan</p>
+                    </div>
+                </section>
+
+                <!-- LOCATION -->
+                <section id="location" class="bg-mokka-dark py-20 md:py-32 px-6">
+                    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-start">
+                        <div class="w-full lg:w-1/3 reveal">
+                            <h2 class="text-3xl md:text-5xl text-white mb-6 font-serif">Besuchen Sie Uns</h2>
+                            <div class="w-12 h-[1px] bg-mokka-gold mb-8"></div>
+                            <p class="text-gray-400 mb-8 text-sm md:text-base leading-relaxed">Besuchen Sie unsere Manufaktur in Neuwied.</p>
+                            <div class="flex items-start gap-4 mb-10">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-mokka-gold mt-1"></i>
+                                <p class="text-gray-300 text-sm leading-relaxed">Mittelstraße 105<br>56564 Neuwied, Deutschland</p>
+                            </div>
+                            <div class="grid gap-4">
+                                <a href="tel:015560330735" class="bg-[#1A1A1A] p-5 border border-white/10 text-white hover:border-mokka-gold transition-all flex items-center gap-4 group rounded-sm">
+                                    <div class="bg-mokka-gold/10 p-3 rounded-full group-hover:bg-mokka-gold group-hover:text-black transition-colors"><i data-lucide="phone" class="w-5 h-5"></i></div>
+                                    <div><p class="text-[9px] uppercase tracking-widest text-gray-500">Telefon</p><p class="text-base md:text-lg font-serif">015560 330735</p></div>
+                                </a>
+                                <a href="mailto:info@mokka-coffee.de" class="bg-[#1A1A1A] p-5 border border-white/10 text-white hover:border-mokka-gold transition-all flex items-center gap-4 group rounded-sm">
+                                    <div class="bg-mokka-gold/10 p-3 rounded-full group-hover:bg-mokka-gold group-hover:text-black transition-colors"><i data-lucide="mail" class="w-5 h-5"></i></div>
+                                    <div><p class="text-[9px] uppercase tracking-widest text-gray-500">E-Mail</p><p class="text-base md:text-lg font-serif text-sm">info@mokka-coffee.de</p></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="w-full lg:w-2/3 h-[350px] md:h-[500px] border border-white/10 overflow-hidden bg-[#1A1A1A] reveal delay-200 rounded-sm">
+                            <img id="img-map" src="" alt="Karte" class="w-full h-full object-cover map-filter grayscale">
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <!-- SUB-PAGES -->
+            <section id="page-menu" class="page-hidden pt-32 pb-20 px-4 min-h-screen-fix bg-mokka-dark flex flex-col items-center">
+                <h1 class="text-4xl md:text-5xl text-white mb-4 font-serif">Speisekarte</h1>
+                <p class="text-mokka-gold uppercase tracking-widest text-[10px] mb-12 italic">Handverlesene Köstlichkeiten</p>
+                <div class="flex flex-col gap-8 w-full max-w-4xl px-2">
+                    <img id="img-menu-1" src="" alt="Menü 1" class="w-full h-auto border border-white/5 shadow-2xl rounded-sm">
+                    <img id="img-menu-2" src="" alt="Menü 2" class="w-full h-auto border border-white/5 shadow-2xl rounded-sm">
                 </div>
-                <div class="bg-[#1A1A1A] p-8 border border-white/5">
-                    <h3 class="text-white font-bold mb-2">Kontakt</h3>
-                    <p>Telefon: 015560 330735<br>E-Mail: info@mokka-coffee.de</p>
+                <div class="mt-16"><a href="#" onclick="navigateToHome(event)" class="text-mokka-gold border-b border-mokka-gold pb-1 uppercase tracking-widest text-[10px]">← Startseite</a></div>
+            </section>
+
+            <section id="page-impressum" class="page-hidden pt-32 pb-20 px-6 min-h-screen-fix bg-mokka-dark">
+                <div class="max-w-3xl mx-auto">
+                    <h1 class="text-3xl md:text-5xl text-white mb-10 font-serif text-center md:text-left">Impressum</h1>
+                    <div class="space-y-6 text-gray-400 font-light text-sm md:text-base">
+                        <div class="bg-[#1A1A1A] p-6 md:p-8 border border-white/5 rounded-sm">
+                            <h3 class="text-white font-bold mb-4 uppercase text-[10px] tracking-widest">Angaben gemäß § 5 TMG</h3>
+                            <p class="mb-2">Mokka Coffee [Name & Rechtsform]</p>
+                            <p class="mb-2">Mittelstraße 105, 56564 Neuwied</p>
+                            <p class="mt-6 font-bold text-white">Vertretung:</p>
+                            <p>[Vorname Nachname]</p>
+                        </div>
+                    </div>
+                    <div class="mt-12 text-center md:text-left"><a href="#" onclick="navigateToHome(event)" class="text-mokka-gold border-b border-mokka-gold pb-1 uppercase tracking-widest text-[10px]">← Startseite</a></div>
                 </div>
-            </div>
-            <div class="mt-12">
-                <a href="#" onclick="navigateToHome(event)" class="text-mokka-gold border-b border-mokka-gold pb-1 uppercase tracking-widest text-xs">← Zurück zur Startseite</a>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- PAGE: DATENSCHUTZ -->
-    <section id="page-datenschutz" class="page-hidden pt-32 pb-20 px-6 min-h-screen bg-mokka-dark">
-        <div class="max-w-3xl mx-auto">
-            <h1 class="text-3xl md:text-5xl text-white mb-12 font-serif">Datenschutzerklärung</h1>
-            <div class="space-y-8 text-gray-400">
-                <div class="bg-[#1A1A1A] p-8 border border-white/5">
-                    <h3 class="text-white font-bold mb-2">Datenschutzhinweis</h3>
-                    <p>Diese Webseite lädt Ressourcen (Stylesheets und Icons) von externen Servern (CDNs), um eine korrekte Darstellung zu gewährleisten. Dabei werden IP-Adressen verarbeitet. In der finalen Version sollten diese lokal gehostet werden.</p>
-                    <p class="mt-4">Verantwortlicher: Mokka Coffee, Mittelstraße 105, 56564 Neuwied.</p>
+            <section id="page-datenschutz" class="page-hidden pt-32 pb-20 px-6 min-h-screen-fix bg-mokka-dark">
+                <div class="max-w-3xl mx-auto">
+                    <h1 class="text-3xl md:text-5xl text-white mb-10 font-serif text-center md:text-left">Datenschutz</h1>
+                    <div class="bg-[#1A1A1A] p-6 md:p-8 border border-white/5 rounded-sm text-gray-400 text-sm">
+                        <p class="mb-4">Diese Webseite arbeitet lokal. Es werden keine Cookies für Tracking-Zwecke verwendet.</p>
+                        <p>Verantwortlich: Mokka Coffee, Neuwied.</p>
+                    </div>
+                    <div class="mt-12 text-center md:text-left"><a href="#" onclick="navigateToHome(event)" class="text-mokka-gold border-b border-mokka-gold pb-1 uppercase tracking-widest text-[10px]">← Startseite</a></div>
                 </div>
-            </div>
-            <div class="mt-12">
-                <a href="#" onclick="navigateToHome(event)" class="text-mokka-gold border-b border-mokka-gold pb-1 uppercase tracking-widest text-xs">← Zurück zur Startseite</a>
-            </div>
+            </section>
         </div>
-    </section>
 
-    <footer class="bg-white border-t border-black/5 py-16 px-6 text-mokka-coffee text-center">
-        <p class="text-xs uppercase tracking-widest mb-4">© 2026 Mokka Coffee Co.</p>
-        <div class="flex justify-center gap-8 text-xs font-bold">
-            <a href="#impressum" class="hover:text-mokka-gold transition-colors">Impressum</a>
-            <a href="#datenschutz" class="hover:text-mokka-gold transition-colors">Datenschutz</a>
-        </div>
-    </footer>
+        <!-- FOOTER -->
+        <footer class="bg-white border-t border-black/5 py-16 px-6 text-mokka-coffee text-center mt-auto">
+            <img id="footer-logo" src="" alt="Mokka" class="h-8 w-auto mx-auto mb-6 opacity-80">
+            <p class="text-[10px] uppercase tracking-widest mb-8 opacity-60">© 2026 Mokka Coffee Co. Neuwied.</p>
+            <div class="flex flex-wrap justify-center gap-6 md:gap-12 text-[9px] font-bold uppercase tracking-widest">
+                <a href="#speisekarte" class="hover:text-mokka-gold transition-colors p-2">Menü</a>
+                <a href="#impressum" class="hover:text-mokka-gold transition-colors p-2">Impressum</a>
+                <a href="#datenschutz" class="hover:text-mokka-gold transition-colors p-2">Datenschutz</a>
+            </div>
+        </footer>
+    </div>
 
+    <!-- SCRIPTS -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Bilder sicher zuweisen
-            const setSrc = (id, src) => {
-                const el = document.getElementById(id);
-                if (el) el.src = src;
-            };
+        let isIntroFinished = false;
 
+        // Android Viewport Height Fix
+        function updateViewportHeight() {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+        window.addEventListener('resize', updateViewportHeight);
+        updateViewportHeight();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const setSrc = (id, src) => { const el = document.getElementById(id); if (el) el.src = src; };
             setSrc('img-hero', websiteImages.heroBackground);
             setSrc('img-story', websiteImages.storyImage);
             setSrc('img-map', websiteImages.mapImage);
@@ -241,78 +371,93 @@
             setSrc('footer-logo', websiteImages.logo);
             setSrc('img-menu-1', websiteImages.menuPage1);
             setSrc('img-menu-2', websiteImages.menuPage2);
-
-            // Lucide Icons initialisieren
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
-
-            handleRouting();
+            
+            const parallax = document.getElementById('banner-parallax');
+            if (parallax) parallax.style.backgroundImage = `url('${websiteImages.parallaxBanner}')`;
+            if (typeof lucide !== 'undefined') { lucide.createIcons(); }
+            
+            startIntro();
         });
+
+        function startIntro() {
+            const overlay = document.getElementById('intro-overlay');
+            const main = document.getElementById('main-content');
+            const letters = document.querySelectorAll('.letter-animate');
+            const line = document.getElementById('intro-line');
+            const tagline = document.getElementById('intro-tagline');
+
+            letters.forEach((letter, index) => {
+                setTimeout(() => { letter.classList.add('active'); }, 100 * index + 300);
+            });
+
+            setTimeout(() => { if(line) line.style.transform = 'scaleX(1)'; }, 800);
+            setTimeout(() => { if(tagline) { tagline.classList.remove('opacity-0', 'translate-y-4'); tagline.classList.add('opacity-100', 'translate-y-0'); } }, 1400);
+
+            setTimeout(() => {
+                main.classList.add('layout-ready');
+                setTimeout(() => {
+                    overlay.style.opacity = '0';
+                    overlay.style.transform = 'scale(1.05)';
+                    main.classList.add('visible');
+                    setTimeout(() => {
+                        overlay.style.display = 'none';
+                        document.body.style.overflow = 'auto'; 
+                        document.body.style.overflowX = 'hidden';
+                        isIntroFinished = true;
+                        handleRouting(); 
+                    }, 1000);
+                }, 50);
+            }, 3000);
+        }
 
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
-            if (menu) {
-                menu.classList.toggle('translate-x-full');
-                document.body.style.overflow = menu.classList.contains('translate-x-full') ? '' : 'hidden';
+            if (menu) { 
+                const isOpening = menu.classList.contains('translate-x-full');
+                menu.classList.toggle('translate-x-full'); 
+                document.body.style.overflow = isOpening ? 'hidden' : 'auto';
             }
         }
 
-        window.addEventListener('hashchange', handleRouting);
+        window.addEventListener('hashchange', () => { if(isIntroFinished) handleRouting(); });
         
         function handleRouting() {
             const hash = window.location.hash;
-            const pages = { 
-                home: document.getElementById('page-home'), 
-                impressum: document.getElementById('page-impressum'), 
-                datenschutz: document.getElementById('page-datenschutz'), 
-                menu: document.getElementById('page-menu') 
-            };
+            const p = { home: document.getElementById('page-home'), impressum: document.getElementById('page-impressum'), datenschutz: document.getElementById('page-datenschutz'), menu: document.getElementById('page-menu') };
+            Object.values(p).forEach(el => el && el.classList.add('page-hidden'));
 
-            Object.values(pages).forEach(el => el && el.classList.add('page-hidden'));
-
-            if (hash === '#impressum') pages.impressum?.classList.remove('page-hidden');
-            else if (hash === '#datenschutz') pages.datenschutz?.classList.remove('page-hidden');
-            else if (hash === '#speisekarte') pages.menu?.classList.remove('page-hidden');
+            if (hash === '#impressum') p.impressum?.classList.remove('page-hidden');
+            else if (hash === '#datenschutz') p.datenschutz?.classList.remove('page-hidden');
+            else if (hash === '#speisekarte') p.menu?.classList.remove('page-hidden');
             else {
-                pages.home?.classList.remove('page-hidden');
+                p.home?.classList.remove('page-hidden');
                 if (hash && hash !== '#') {
-                    setTimeout(() => {
-                        document.querySelector(hash)?.scrollIntoView({behavior: 'smooth'});
-                    }, 50);
-                }
+                    const target = document.querySelector(hash);
+                    if(target) {
+                        setTimeout(() => { target.scrollIntoView({behavior: 'smooth', block: 'start'}); }, 50);
+                    }
+                } else { window.scrollTo(0,0); }
             }
-            window.scrollTo(0, 0);
         }
 
-        function navigateToHome(e) {
-            if (e) e.preventDefault();
-            window.location.hash = '';
-            handleRouting();
+        function navigateToHome(e) { 
+            if (e) e.preventDefault(); 
+            if (window.location.hash !== '') { window.location.hash = ''; } 
+            else { handleRouting(); }
         }
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
+        
+        const obs = new IntersectionObserver((entries) => { 
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); }); 
+        }, { threshold: 0.05 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+        
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (nav) {
-                if (window.scrollY > 50) {
-                    nav.classList.add('shadow-lg', 'py-4');
-                    nav.classList.remove('py-6');
-                } else {
-                    nav.classList.remove('shadow-lg', 'py-4');
-                    nav.classList.add('py-6');
-                }
+                if (window.scrollY > 30) { nav.classList.add('shadow-md', 'py-2'); nav.classList.remove('py-4'); }
+                else { nav.classList.remove('shadow-md', 'py-2'); nav.classList.add('py-4'); }
             }
         });
     </script>
 </body>
 </html>
-
-
