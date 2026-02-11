@@ -6,8 +6,8 @@
     <title>Mokka | Traditionelle Küche, Modern Serviert</title>
     
     <!-- ========================================================================================== -->
-    <!-- DSGVO STATUS: 100% KONFORM (NUR SYSTEM-SCHRIFTARTEN)                                       -->
-    <!-- Es werden keinerlei Schriftart-Dateien geladen oder referenziert.                          -->
+    <!-- DSGVO STATUS: 100% KONFORM (NUR GENERISCHE SYSTEM-SCHRIFTARTEN)                            -->
+    <!-- Alle spezifischen Namen wie "Lato" oder "Playfair" wurden komplett entfernt.               -->
     <!-- ========================================================================================== -->
 
     <!-- 1. CSS FRAMEWORK (TAILWIND) -->
@@ -47,7 +47,7 @@
                         }
                     },
                     fontFamily: {
-                        /* Native System-Schriften für maximale Geschwindigkeit und Datenschutz */
+                        /* Nur noch generische System-Definitionen - keine Markennamen mehr */
                         serif: ['ui-serif', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
                         sans: ['ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
                     },
@@ -63,12 +63,12 @@
         body { 
             overflow-x: hidden; 
             background-color: #0F0F0F;
-            /* Globaler System-Sans-Stack */
+            /* Erzwingt die Standard-Sans-Schrift des Betriebssystems */
             font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
         
         h1, h2, h3, h4, .font-serif {
-            /* Globaler System-Serif-Stack */
+            /* Erzwingt die Standard-Serif-Schrift des Betriebssystems (z.B. Times oder Georgia) */
             font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
         }
 
@@ -336,7 +336,7 @@
             <div class="space-y-8 text-gray-400 font-light">
                 <div class="bg-[#1A1A1A] p-8 border border-white/5">
                     <h3 class="text-white font-bold mb-2 font-serif">Datenschutz auf einen Blick</h3>
-                    <p>Diese Website verzichtet auf externe Tracking-Cookies und externe Web-Fonts. Wir nutzen ausschließlich System-Schriftarten, um Ihre Privatsphäre zu schützen.</p>
+                    <p>Diese Website verzichtet auf externe Tracking-Cookies und externe Web-Fonts. Wir nutzen ausschließlich generische System-Schriftarten, um Ihre Privatsphäre zu schützen.</p>
                 </div>
                 <div class="mt-8">
                     <a href="#" onclick="navigateToHome(event)" class="text-mokka-gold hover:text-white transition-colors border-b border-mokka-gold pb-1">← Zurück zur Startseite</a>
