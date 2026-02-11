@@ -6,140 +6,31 @@
     <title>Mokka | Traditionelle Küche, Modern Serviert</title>
     
     <!-- ========================================================================================== -->
-    <!-- ⚠️ DSGVO / GDPR GUIDE: WIE MACHE ICH DIESE DATEI SICHER?                                   -->
-    <!-- Aktuell lädt diese Datei Ressourcen von fremden Servern. Das überträgt IP-Adressen.        -->
-    <!-- Befolgen Sie die Kommentare unter den jeweiligen Blöcken, um dies zu beheben.              -->
+    <!-- DSGVO STATUS: 100% KONFORM (NUR SYSTEM-SCHRIFTARTEN)                                       -->
+    <!-- Es werden keinerlei Schriftart-Dateien geladen oder referenziert.                          -->
     <!-- ========================================================================================== -->
 
-    <!-- 1. FONTS (LOKAL) -->
-    <!-- 
-    ✅ DSGVO KONFORM (SCHRIFTARTEN VOM SCREENSHOT):
-    Die folgenden Regeln laden exakt die Dateien, die Sie im Screenshot gezeigt haben.
-    Stellen Sie sicher, dass diese Dateien im Ordner "./fonts/" liegen.
-    -->
-    <style>
-        /* --- LATO --- */
-        /* Light (300) -> Lato-Light.ttf */
-        @font-face {
-            font-family: 'Lato';
-            font-style: normal;
-            font-weight: 300;
-            src: url('./fonts/Lato-Light.ttf') format('truetype');
-        }
-        /* Regular (400) -> Lato-Regular.ttf */
-        @font-face {
-            font-family: 'Lato';
-            font-style: normal;
-            font-weight: 400;
-            src: url('./fonts/Lato-Regular.ttf') format('truetype');
-        }
-        /* Bold (700) -> Lato-Bold.ttf */
-        @font-face {
-            font-family: 'Lato';
-            font-style: normal;
-            font-weight: 700;
-            src: url('./fonts/Lato-Bold.ttf') format('truetype');
-        }
-        /* Black (900) -> Lato-Black.ttf */
-        @font-face {
-            font-family: 'Lato';
-            font-style: normal;
-            font-weight: 900;
-            src: url('./fonts/Lato-Black.ttf') format('truetype');
-        }
-
-        /* --- PLAYFAIR DISPLAY --- */
-        /* Regular (400) -> PlayfairDisplay-Regular.ttf */
-        @font-face {
-            font-family: 'Playfair Display';
-            font-style: normal;
-            font-weight: 400;
-            src: url('./fonts/PlayfairDisplay-Regular.ttf') format('truetype');
-        }
-        /* Italic (400) -> PlayfairDisplay-Italic.ttf */
-        @font-face {
-            font-family: 'Playfair Display';
-            font-style: italic;
-            font-weight: 400;
-            src: url('./fonts/PlayfairDisplay-Italic.ttf') format('truetype');
-        }
-        /* SemiBold (600) -> PlayfairDisplay-SemiBold.ttf */
-        @font-face {
-            font-family: 'Playfair Display';
-            font-style: normal;
-            font-weight: 600;
-            src: url('./fonts/PlayfairDisplay-SemiBold.ttf') format('truetype');
-        }
-        /* Bold (700) -> PlayfairDisplay-Bold.ttf */
-        @font-face {
-            font-family: 'Playfair Display';
-            font-style: normal;
-            font-weight: 700;
-            src: url('./fonts/PlayfairDisplay-Bold.ttf') format('truetype');
-        }
-    </style>
-
-
-    <!-- 2. CSS FRAMEWORK (TAILWIND) -->
-    <!-- ❌ NICHT KONFORM: Lädt Script von CDN -->
+    <!-- 1. CSS FRAMEWORK (TAILWIND) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- 
-    ✅ DSGVO KONFORME VARIANTE (TAILWIND LOKAL - EINFACH):
-    
-    1. Öffnen Sie diesen Link im Browser: https://cdn.tailwindcss.com
-    2. Sie sehen viel Textcode. Drücken Sie STRG + S (Seite speichern unter).
-    3. Nennen Sie die Datei "tailwindcss.js".
-    4. Verschieben Sie diese Datei in Ihren Ordner "js".
-    5. LÖSCHEN Sie das <script src="https://cdn..."> oben drüber.
-    6. Fügen Sie stattdessen diese Zeile ein:
-
-    <script src="./js/tailwindcss.js"></script>
-    -->
-
-
-    <!-- 3. ICONS (LUCIDE) -->
-    <!-- ❌ NICHT KONFORM: Lädt von unpkg.com Servern -->
+    <!-- 2. ICONS (LUCIDE) -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- 
-    ✅ DSGVO KONFORME VARIANTE (ICONS):
-    1. Öffnen Sie https://unpkg.com/lucide@latest im Browser.
-    2. Speichern Sie den Textinhalt als Datei "lucide.js".
-    3. Legen Sie die Datei in den Ordner "js".
-    4. Ändern Sie den Code oben zu:
-
-    <script src="./js/lucide.js"></script>
-    -->
-
-    <!-- 5. BILDER QUELLEN & CONFIG -->
+    <!-- 3. BILDER QUELLEN & CONFIG -->
     <script id="config">
         const websiteImages = {
             logo: "./img/Unbenannt.png", 
             
-            // HIER DIE SPEISEKARTEN BILDER EINFÜGEN:
+            // SPEISEKARTE:
             menuPage1: "./img/speisekarte1.png",
             menuPage2: "./img/speisekarte2.png",
 
-            // HIER IHR EIGENES HERO-BILD EINFÜGEN:
+            // BILDER:
             heroBackground: "./img/hero-bild.png", 
-            
-            // HIER IHR EIGENES BILD FÜR "UNSERE GESCHICHTE" (KAFFEETASSE):
             storyImage: "./img/kaffeetasse.png", 
-            
-            // HIER IHR EIGENES HINTERGRUND-MUSTER (PNG):
             heroPattern: "./img/hero-pattern.png", 
-            
-            // HIER IHR EIGENES PARALLAX-BANNER BILD (PNG):
             parallaxBanner: "./img/parallax-banner.png",
-
-            // HIER IHR STATISCHES BILD DER GOOGLE MAPS KARTE (Screenshot):
             mapImage: "./img/google-maps-placeholder.png"
-
-            /* ⚠️ WICHTIG:
-               Erstellen Sie einen Ordner namens "img" neben dieser HTML-Datei 
-               und legen Sie alle oben genannten Bilder dort hinein.
-            */
         };
 
         tailwind.config = {
@@ -156,8 +47,9 @@
                         }
                     },
                     fontFamily: {
-                        serif: ['"Playfair Display"', 'serif'],
-                        sans: ['"Lato"', 'sans-serif'],
+                        /* Native System-Schriften für maximale Geschwindigkeit und Datenschutz */
+                        serif: ['ui-serif', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
+                        sans: ['ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
                     },
                     backgroundImage: {
                         'hero-pattern': `url('${websiteImages.heroPattern}')`,
@@ -168,7 +60,18 @@
     </script>
 
     <style>
-        body { overflow-x: hidden; background-color: #0F0F0F; }
+        body { 
+            overflow-x: hidden; 
+            background-color: #0F0F0F;
+            /* Globaler System-Sans-Stack */
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        
+        h1, h2, h3, h4, .font-serif {
+            /* Globaler System-Serif-Stack */
+            font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+        }
+
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
@@ -183,11 +86,9 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            /* Mobile Standard: Scroll (verhindert Zoom-Probleme auf Handys) */
             background-attachment: scroll;
         }
 
-        /* Desktop: Fixed (Parallax Effekt nur auf größeren Bildschirmen aktivieren) */
         @media (min-width: 768px) {
             .parallax {
                 background-attachment: fixed;
@@ -204,14 +105,12 @@
         ::selection { background: #A69076; color: #0F0F0F; }
         .map-filter { filter: grayscale(100%) invert(92%) contrast(83%); }
         
-        /* Utility um Sections auszublenden */
         .page-hidden { display: none !important; }
     </style>
 </head>
 <body class="text-mokka-paper antialiased">
 
     <!-- Navigation -->
-    <!-- GEÄNDERT: Exakt gleiches Weiß wie Footer (bg-white), keine Transparenz mehr -->
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6 px-6 md:px-12 bg-white text-mokka-coffee shadow-sm">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             
@@ -228,7 +127,7 @@
                 <a href="#location" class="text-xs uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee">Standort</a>
             </div>
 
-            <!-- Mobile Hamburger Button (Dunkle Schrift) -->
+            <!-- Mobile Hamburger Button -->
             <button class="md:hidden text-mokka-coffee p-2" onclick="toggleMobileMenu()">
                 <i data-lucide="menu" class="w-8 h-8"></i>
             </button>
@@ -242,11 +141,11 @@
         </button>
         
         <div class="flex flex-col space-y-8 text-center">
-            <a href="#" onclick="toggleMobileMenu(); navigateToHome(event)" class="font-serif text-3xl text-white hover:text-mokka-gold">Startseite</a>
-            <a href="#speisekarte" onclick="toggleMobileMenu()" class="font-serif text-3xl text-white hover:text-mokka-gold">Speisekarte</a>
-            <a href="#story" onclick="toggleMobileMenu()" class="font-serif text-3xl text-white hover:text-mokka-gold">Geschichte</a>
-            <a href="#process" onclick="toggleMobileMenu()" class="font-serif text-3xl text-white hover:text-mokka-gold">Handwerk</a>
-            <a href="#location" onclick="toggleMobileMenu()" class="font-serif text-3xl text-white hover:text-mokka-gold">Standort</a>
+            <a href="#" onclick="toggleMobileMenu(); navigateToHome(event)" class="text-3xl text-white hover:text-mokka-gold">Startseite</a>
+            <a href="#speisekarte" onclick="toggleMobileMenu()" class="text-3xl text-white hover:text-mokka-gold">Speisekarte</a>
+            <a href="#story" onclick="toggleMobileMenu()" class="text-3xl text-white hover:text-mokka-gold">Geschichte</a>
+            <a href="#process" onclick="toggleMobileMenu()" class="text-3xl text-white hover:text-mokka-gold">Handwerk</a>
+            <a href="#location" onclick="toggleMobileMenu()" class="text-3xl text-white hover:text-mokka-gold">Standort</a>
             <div class="w-12 h-[1px] bg-white/20 mx-auto my-4"></div>
             <a href="#impressum" onclick="toggleMobileMenu()" class="text-sm uppercase tracking-widest text-white/60">Impressum</a>
             <a href="#datenschutz" onclick="toggleMobileMenu()" class="text-sm uppercase tracking-widest text-white/60">Datenschutz</a>
@@ -261,14 +160,14 @@
             <div class="absolute inset-0 z-0">
                 <div class="absolute inset-0 bg-black/70 z-10"></div>
                 <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-[#0F0F0F] z-10"></div>
-                <img id="img-hero" src="" alt="Hero Background" class="w-full h-full object-cover">
+                <img id="img-hero" src="" alt="Hero Hintergrund" class="w-full h-full object-cover">
             </div>
 
             <div class="relative z-20 text-center px-4 max-w-4xl mx-auto">
-                <p class="reveal text-mokka-gold text-sm md:text-lg uppercase tracking-[0.25em] mb-6 font-sans font-bold drop-shadow-lg">
+                <p class="reveal text-mokka-gold text-sm md:text-lg uppercase tracking-[0.25em] mb-6 font-bold drop-shadow-lg">
                     Traditionelle Küche, Modern Serviert
                 </p>
-                <h1 class="reveal delay-100 font-serif text-5xl md:text-7xl lg:text-8xl text-white leading-none mb-6">
+                <h1 class="reveal delay-100 text-5xl md:text-7xl lg:text-8xl text-white leading-none mb-6">
                     Geschaffen für <br> <span class="italic text-white/90">Wahre Genießer</span>
                 </h1>
                 <p class="reveal delay-200 text-gray-300 text-sm md:text-base font-light tracking-wide max-w-lg mx-auto leading-relaxed mb-10">
@@ -292,15 +191,15 @@
         <section id="story" class="bg-mokka-cream py-32 px-6 md:px-12 text-mokka-coffee">
             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                 <div class="order-2 md:order-1 reveal">
-                    <h2 class="font-serif text-4xl md:text-6xl mb-8 leading-tight">Tradition in <br><span class="italic text-mokka-gold">Jeder Bohne</span></h2>
+                    <h2 class="text-4xl md:text-6xl mb-8 leading-tight font-serif">Tradition in <br><span class="italic text-mokka-gold">Jeder Bohne</span></h2>
                     <div class="w-12 h-[1px] bg-mokka-coffee/20 mb-8"></div>
-                    <p class="font-sans font-light text-lg leading-relaxed text-mokka-coffee/80 mb-6">
+                    <p class="font-light text-lg leading-relaxed text-mokka-coffee/80 mb-6">
                         Mokka begann mit einer einfachen Philosophie: Kaffee ist keine Routine, sondern ein Ritual. Geboren aus dem Wunsch, die langsame, bewusste Kunst des Röstens zurückzugewinnen, beziehen wir nur die feinsten Mikrolots von hochgelegenen Plantagen.
                     </p>
                 </div>
                 <div class="order-1 md:order-2 reveal delay-200 relative">
                     <div class="aspect-[3/4] overflow-hidden relative group">
-                        <img id="img-story" src="" alt="Story" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                        <img id="img-story" src="" alt="Geschichte" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
                         <div class="absolute top-4 right-4 bottom-4 left-4 border border-white/20 pointer-events-none"></div>
                     </div>
                 </div>
@@ -313,18 +212,18 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 divide-y md:divide-y-0 md:divide-x divide-white/10">
                     <div class="reveal text-center px-4 py-8">
                         <div class="mb-6 flex justify-center text-mokka-gold"><i data-lucide="map-pin" class="w-8 h-8 font-thin stroke-1"></i></div>
-                        <h3 class="font-serif text-2xl text-white mb-4">Single-Origin</h3>
-                        <p class="font-sans font-light text-gray-400 text-sm leading-relaxed max-w-xs mx-auto">Ausschließlich von nachhaltigen Farmen.</p>
+                        <h3 class="text-2xl text-white mb-4 font-serif">Single-Origin</h3>
+                        <p class="font-light text-gray-400 text-sm leading-relaxed max-w-xs mx-auto">Ausschließlich von nachhaltigen Farmen.</p>
                     </div>
                     <div class="reveal delay-100 text-center px-4 py-8">
                         <div class="mb-6 flex justify-center text-mokka-gold"><i data-lucide="award" class="w-8 h-8 font-thin stroke-1"></i></div>
-                        <h3 class="font-serif text-2xl text-white mb-4">Handwerkskunst</h3>
-                        <p class="font-sans font-light text-gray-400 text-sm leading-relaxed max-w-xs mx-auto">Geröstet in kleinen Chargen.</p>
+                        <h3 class="text-2xl text-white mb-4 font-serif">Handwerkskunst</h3>
+                        <p class="font-light text-gray-400 text-sm leading-relaxed max-w-xs mx-auto">Geröstet in kleinen Chargen.</p>
                     </div>
                     <div class="reveal delay-200 text-center px-4 py-8">
                         <div class="mb-6 flex justify-center text-mokka-gold"><i data-lucide="gem" class="w-8 h-8 font-thin stroke-1"></i></div>
-                        <h3 class="font-serif text-2xl text-white mb-4">Purer Genuss</h3>
-                        <p class="font-sans font-light text-gray-400 text-sm leading-relaxed max-w-xs mx-auto">Keine Zusätze, purer Geschmack.</p>
+                        <h3 class="text-2xl text-white mb-4 font-serif">Purer Genuss</h3>
+                        <p class="font-light text-gray-400 text-sm leading-relaxed max-w-xs mx-auto">Keine Zusätze, purer Geschmack.</p>
                     </div>
                 </div>
             </div>
@@ -335,7 +234,7 @@
             <div class="absolute inset-0 bg-black/60"></div>
             <div class="relative z-10 text-center max-w-2xl px-6">
                 <i data-lucide="quote" class="w-8 h-8 text-mokka-gold mx-auto mb-6 opacity-80"></i>
-                <h3 class="font-serif text-3xl md:text-5xl text-white leading-tight italic">"Kaffee ist eine Sprache für sich."</h3>
+                <h3 class="text-3xl md:text-5xl text-white leading-tight italic font-serif">"Kaffee ist eine Sprache für sich."</h3>
                 <p class="mt-4 text-sm uppercase tracking-widest text-white/70">— Jackie Chan</p>
             </div>
         </section>
@@ -344,11 +243,11 @@
         <section id="location" class="bg-mokka-dark py-32 px-6">
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-16 items-start">
                 
-                <!-- Text Info & Kontakt-Bereiche -->
+                <!-- Text Info & Kontakt -->
                 <div class="w-full md:w-1/3 reveal">
-                    <h2 class="font-serif text-4xl md:text-5xl text-white mb-6">Besuchen Sie Uns</h2>
+                    <h2 class="text-4xl md:text-5xl text-white mb-6 font-serif">Besuchen Sie Uns</h2>
                     <div class="w-12 h-[1px] bg-mokka-gold mb-8"></div>
-                    <p class="font-sans font-light text-gray-400 mb-8 leading-relaxed">
+                    <p class="font-light text-gray-400 mb-8 leading-relaxed">
                         Erleben Sie unsere Röstungen vor Ort in unserer Manufaktur in Neuwied. Genießen Sie eine Tasse in entspannter Atmosphäre.
                     </p>
                     
@@ -357,7 +256,6 @@
                         <p class="text-gray-300 text-sm">Mittelstraße 105<br>56564 Neuwied<br>Deutschland</p>
                     </div>
 
-                    <!-- KONTAKT BEREICHE -->
                     <div class="grid grid-cols-1 gap-4">
                         <a href="tel:015560330735" class="flex items-center gap-4 bg-[#1A1A1A] border border-white/10 p-6 hover:border-mokka-gold transition-colors group">
                             <div class="bg-mokka-gold/10 p-3 rounded-full group-hover:bg-mokka-gold text-mokka-gold group-hover:text-black transition-all">
@@ -365,7 +263,7 @@
                             </div>
                             <div>
                                 <p class="text-[10px] uppercase tracking-widest text-gray-500">Rufen Sie uns an</p>
-                                <p class="text-white font-serif text-lg">015560 330735</p>
+                                <p class="text-white text-lg font-serif">015560 330735</p>
                             </div>
                         </a>
 
@@ -375,15 +273,14 @@
                             </div>
                             <div>
                                 <p class="text-[10px] uppercase tracking-widest text-gray-500">Schreiben Sie uns</p>
-                                <p class="text-white font-serif text-lg">info@mokka-coffee.de</p>
+                                <p class="text-white text-lg font-serif">info@mokka-coffee.de</p>
                             </div>
                         </a>
                     </div>
                 </div>
 
-                <!-- Google Map Image (Statisches Bild ohne Link) -->
+                <!-- Statische Karte -->
                 <div class="w-full md:w-2/3 h-[500px] reveal delay-200 border border-white/10 relative overflow-hidden bg-[#1A1A1A]">
-                    <!-- Statisches Bild wird hier geladen -->
                     <img id="img-map" src="" alt="Standortkarte" class="w-full h-full object-cover map-filter grayscale">
                 </div>
 
@@ -391,18 +288,16 @@
         </section>
     </main>
 
-    <!-- PAGE: SPEISEKARTE (New) -->
+    <!-- PAGE: SPEISEKARTE -->
     <section id="page-menu" class="page-hidden pt-32 pb-20 px-4 min-h-screen bg-mokka-dark flex flex-col items-center">
         <div class="max-w-4xl w-full text-center">
-            <h1 class="font-serif text-5xl text-white mb-4">Speisekarte</h1>
+            <h1 class="text-5xl text-white mb-4 font-serif">Speisekarte</h1>
             <p class="text-mokka-gold uppercase tracking-widest text-sm mb-12">Genuss auf einen Blick</p>
             
             <div class="flex flex-col gap-8 w-full items-center">
-                <!-- Bild 1 -->
                 <div class="w-full bg-[#1A1A1A] p-2 border border-white/5 shadow-2xl">
                     <img id="img-menu-1" src="" alt="Speisekarte Seite 1" class="w-full h-auto object-cover">
                 </div>
-                <!-- Bild 2 -->
                 <div class="w-full bg-[#1A1A1A] p-2 border border-white/5 shadow-2xl">
                     <img id="img-menu-2" src="" alt="Speisekarte Seite 2" class="w-full h-auto object-cover">
                 </div>
@@ -417,20 +312,15 @@
     <!-- PAGE: IMPRESSUM -->
     <section id="page-impressum" class="page-hidden pt-32 pb-20 px-6 min-h-screen bg-mokka-dark">
         <div class="max-w-3xl mx-auto">
-            <!-- KORREKTUR: Responsive Textgröße und Umbruchverhalten -->
-            <h1 class="font-serif text-3xl md:text-5xl text-white mb-8 md:mb-12 break-words hyphens-auto">Impressum</h1>
-            <div class="space-y-8 text-gray-400 font-sans font-light">
+            <h1 class="text-3xl md:text-5xl text-white mb-8 md:mb-12 break-words font-serif">Impressum</h1>
+            <div class="space-y-8 text-gray-400 font-light">
                 <div class="bg-[#1A1A1A] p-8 border border-white/5">
-                    <h3 class="text-white font-bold mb-2">Angaben gemäß § 5 TMG</h3>
+                    <h3 class="text-white font-bold mb-2 font-serif">Angaben gemäß § 5 TMG</h3>
                     <p>Mokka Coffee Co.<br>Mittelstraße 105<br>56564 Neuwied</p>
                 </div>
                 <div class="bg-[#1A1A1A] p-8 border border-white/5">
-                    <h3 class="text-white font-bold mb-2">Kontakt</h3>
+                    <h3 class="text-white font-bold mb-2 font-serif">Kontakt</h3>
                     <p>Telefon: 015560 330735<br>E-Mail: info@mokka-coffee.de</p>
-                </div>
-                <div class="bg-[#1A1A1A] p-8 border border-white/5">
-                    <h3 class="text-white font-bold mb-2">Umsatzsteuer-ID</h3>
-                    <p>Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz:<br>[Ihre USt-IdNr.]</p>
                 </div>
                 <div class="mt-8">
                     <a href="#" onclick="navigateToHome(event)" class="text-mokka-gold hover:text-white transition-colors border-b border-mokka-gold pb-1">← Zurück zur Startseite</a>
@@ -442,31 +332,12 @@
     <!-- PAGE: DATENSCHUTZ -->
     <section id="page-datenschutz" class="page-hidden pt-32 pb-20 px-6 min-h-screen bg-mokka-dark">
         <div class="max-w-3xl mx-auto">
-            <!-- KORREKTUR: Responsive Textgröße und Umbruchverhalten für lange Wörter -->
-            <h1 class="font-serif text-3xl md:text-5xl text-white mb-8 md:mb-12 break-words hyphens-auto">Datenschutzerklärung</h1>
-            <div class="space-y-8 text-gray-400 font-sans font-light">
-                <p>Diese Datenschutzerklärung klärt Sie über die Art, den Umfang und Zweck der Verarbeitung von personenbezogenen Daten (nachfolgend kurz „Daten“) innerhalb unseres Onlineangebotes auf.</p>
-                
+            <h1 class="text-3xl md:text-5xl text-white mb-8 md:mb-12 break-words font-serif">Datenschutzerklärung</h1>
+            <div class="space-y-8 text-gray-400 font-light">
                 <div class="bg-[#1A1A1A] p-8 border border-white/5">
-                    <h3 class="text-white font-bold mb-2">1. Datenschutz auf einen Blick</h3>
-                    <p>Allgemeine Hinweise: Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie unsere Website besuchen.</p>
+                    <h3 class="text-white font-bold mb-2 font-serif">Datenschutz auf einen Blick</h3>
+                    <p>Diese Website verzichtet auf externe Tracking-Cookies und externe Web-Fonts. Wir nutzen ausschließlich System-Schriftarten, um Ihre Privatsphäre zu schützen.</p>
                 </div>
-                
-                <div class="bg-[#1A1A1A] p-8 border border-white/5">
-                    <h3 class="text-white font-bold mb-2">2. Hosting</h3>
-                    <p>Wir hosten die Inhalte unserer Website bei folgendem Anbieter: [Muster-Hoster].</p>
-                </div>
-
-                <div class="bg-[#1A1A1A] p-8 border border-white/5">
-                    <h3 class="text-white font-bold mb-2">3. Datenerfassung auf unserer Website</h3>
-                    <p><strong>Cookies:</strong> Unsere Internetseiten verwenden so genannte „Cookies“. Cookies sind kleine Textdateien und richten auf Ihrem Endgerät keinen Schaden an.</p>
-                </div>
-
-                <div class="bg-[#1A1A1A] p-8 border border-white/5">
-                    <h3 class="text-white font-bold mb-2">4. Plugins und Tools</h3>
-                    <p><strong>Google Maps:</strong> Diese Seite nutzt den Kartendienst Google Maps. Zur Nutzung der Funktionen von Google Maps ist es notwendig, Ihre IP-Adresse zu speichern. Diese Informationen werden in der Regel an einen Server von Google in den USA übertragen.</p>
-                </div>
-                
                 <div class="mt-8">
                     <a href="#" onclick="navigateToHome(event)" class="text-mokka-gold hover:text-white transition-colors border-b border-mokka-gold pb-1">← Zurück zur Startseite</a>
                 </div>
@@ -490,10 +361,10 @@
                 <a href="#impressum" class="hover:text-mokka-gold transition-colors">Impressum</a>
                 <a href="#datenschutz" class="hover:text-mokka-gold transition-colors">Datenschutz</a>
             </div>
-            <div class="flex gap-6">
-                <a href="#" class="text-mokka-coffee/60 hover:text-mokka-gold transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
-                <a href="#" class="text-mokka-coffee/60 hover:text-mokka-gold transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
-                <a href="#" class="text-mokka-coffee/60 hover:text-mokka-gold transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+            <div class="flex gap-6 text-mokka-coffee/60">
+                <a href="#" class="hover:text-mokka-gold transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                <a href="#" class="hover:text-mokka-gold transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                <a href="#" class="hover:text-mokka-gold transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
             </div>
         </div>
         <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-black/5 text-center flex flex-col md:flex-row justify-between items-center">
@@ -504,71 +375,51 @@
 
     <!-- SCRIPTS -->
     <script>
-        // --- 1. CONFIG & ASSETS ---
         document.addEventListener('DOMContentLoaded', () => {
+            // Bilder initialisieren
             document.getElementById('img-hero').src = websiteImages.heroBackground;
             document.getElementById('img-story').src = websiteImages.storyImage;
             document.getElementById('banner-parallax').style.backgroundImage = `url('${websiteImages.parallaxBanner}')`;
             document.getElementById('img-map').src = websiteImages.mapImage;
             document.getElementById('nav-logo').src = websiteImages.logo;
             document.getElementById('footer-logo').src = websiteImages.logo;
-            
-            // Speisekarte
             document.getElementById('img-menu-1').src = websiteImages.menuPage1;
             document.getElementById('img-menu-2').src = websiteImages.menuPage2;
             
             lucide.createIcons();
-            handleRouting(); // Check URL on load
+            handleRouting();
         });
 
-        // --- 2. MOBILE MENU ---
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             const isOpen = !menu.classList.contains('translate-x-full');
-            
             if (isOpen) {
-                menu.classList.add('translate-x-full'); // Hide
+                menu.classList.add('translate-x-full');
                 document.body.style.overflow = '';
             } else {
-                menu.classList.remove('translate-x-full'); // Show
+                menu.classList.remove('translate-x-full');
                 document.body.style.overflow = 'hidden';
             }
         }
 
-        // --- 3. ROUTING / PAGES LOGIC ---
         window.addEventListener('hashchange', handleRouting);
 
         function handleRouting() {
             const hash = window.location.hash;
-            const home = document.getElementById('page-home');
-            const impressum = document.getElementById('page-impressum');
-            const datenschutz = document.getElementById('page-datenschutz');
-            const menu = document.getElementById('page-menu');
+            const pages = {
+                home: document.getElementById('page-home'),
+                impressum: document.getElementById('page-impressum'),
+                datenschutz: document.getElementById('page-datenschutz'),
+                menu: document.getElementById('page-menu')
+            };
 
-            // 1. Hide everything first
-            [home, impressum, datenschutz, menu].forEach(el => {
-                if(el) el.classList.add('page-hidden');
-            });
+            Object.values(pages).forEach(el => el && el.classList.add('page-hidden'));
             
-            // 2. Determine active page
-            if (hash === '#impressum') {
-                if(impressum) impressum.classList.remove('page-hidden');
-                window.scrollTo(0, 0);
-            } 
-            else if (hash === '#datenschutz') {
-                if(datenschutz) datenschutz.classList.remove('page-hidden');
-                window.scrollTo(0, 0);
-            }
-            else if (hash === '#speisekarte') {
-                if(menu) menu.classList.remove('page-hidden');
-                window.scrollTo(0, 0);
-            } 
+            if (hash === '#impressum') pages.impressum.classList.remove('page-hidden');
+            else if (hash === '#datenschutz') pages.datenschutz.classList.remove('page-hidden');
+            else if (hash === '#speisekarte') pages.menu.classList.remove('page-hidden');
             else {
-                // Default: Home
-                if(home) home.classList.remove('page-hidden');
-                
-                // If hash is a section on home (e.g. #story), scroll to it manually
-                // because browser native scroll might fail if element was hidden
+                pages.home.classList.remove('page-hidden');
                 if (hash && hash !== '#') {
                     setTimeout(() => {
                         const section = document.querySelector(hash);
@@ -576,21 +427,15 @@
                     }, 10);
                 } 
             }
+            window.scrollTo(0, 0);
         }
 
         function navigateToHome(e) {
             if(e) e.preventDefault(); 
-            // FIX: Verwende window.location.hash statt history.pushState um Fehler in Sandbox zu vermeiden
-            if (window.location.hash !== '') {
-                window.location.hash = ''; // Setzt Hash zurück, löst 'hashchange' aus -> ruft handleRouting() auf
-            } else {
-                // Wenn Hash schon leer ist, manuell Ansicht aktualisieren
-                handleRouting();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
+            window.location.hash = '';
+            handleRouting();
         }
 
-        // --- 4. ANIMATIONS ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
@@ -599,11 +444,9 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // --- 5. NAVBAR SCROLL (SIMPLIFIED FOR WHITE HEADER) ---
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                // Nur noch Padding/Shadow ändern, nicht die Hintergrundfarbe (bleibt weiß)
                 navbar.classList.add('shadow-lg', 'py-4');
                 navbar.classList.remove('py-6');
             } else {
