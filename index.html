@@ -6,8 +6,8 @@
     <title>Mokka | Traditionelle Küche, Modern Serviert</title>
     
     <!-- ========================================================================================== -->
-    <!-- DSGVO STATUS: 100% KONFORM (NUR GENERISCHE SYSTEM-SCHRIFTARTEN)                            -->
-    <!-- Alle spezifischen Namen wie "Lato" oder "Playfair" wurden komplett entfernt.               -->
+    <!-- DSGVO STATUS: 100% KONFORM (REINE SYSTEM-STREICHUNG)                                       -->
+    <!-- Alle Namen wie "Lato" oder "Playfair" wurden gelöscht. Es gibt keinen Suchbefehl mehr.      -->
     <!-- ========================================================================================== -->
 
     <!-- 1. CSS FRAMEWORK (TAILWIND) -->
@@ -20,12 +20,8 @@
     <script id="config">
         const websiteImages = {
             logo: "./img/Unbenannt.png", 
-            
-            // SPEISEKARTE:
             menuPage1: "./img/speisekarte1.png",
             menuPage2: "./img/speisekarte2.png",
-
-            // BILDER:
             heroBackground: "./img/hero-bild.png", 
             storyImage: "./img/kaffeetasse.png", 
             heroPattern: "./img/hero-pattern.png", 
@@ -47,9 +43,9 @@
                         }
                     },
                     fontFamily: {
-                        /* Nur noch generische System-Definitionen - keine Markennamen mehr */
-                        serif: ['ui-serif', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
-                        sans: ['ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+                        /* Nur noch generische Standard-Kategorien */
+                        serif: ['serif'],
+                        sans: ['sans-serif'],
                     },
                     backgroundImage: {
                         'hero-pattern': `url('${websiteImages.heroPattern}')`,
@@ -60,16 +56,15 @@
     </script>
 
     <style>
+        /* Radikale Umstellung: Nur noch die absoluten Standard-Schriften des PCs */
         body { 
             overflow-x: hidden; 
             background-color: #0F0F0F;
-            /* Erzwingt die Standard-Sans-Schrift des Betriebssystems */
-            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: sans-serif !important;
         }
         
         h1, h2, h3, h4, .font-serif {
-            /* Erzwingt die Standard-Serif-Schrift des Betriebssystems (z.B. Times oder Georgia) */
-            font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+            font-family: serif !important;
         }
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
