@@ -2,12 +2,11 @@
 <html lang="de" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mokka | Traditionelle Küche, Modern Serviert</title>
     
     <!-- ⚖️ DSGVO-HINWEIS: In Produktion Skripte lokal hosten! -->
 
-    <!-- 1. CSS FRAMEWORK -->
     <script src="./js/tailwindcss.js"></script>
     <script src="./js/lucide.js"></script>
 
@@ -15,8 +14,8 @@
     <script id="config">
         const websiteImages = {
             logo: "./img/Unbenannt.png", 
-            menuPage2: "./img/speisekarte1.png",
-            menuPage1: "./img/speisekarte2.png",
+            menuPage1: "./img/speisekarte1.png",
+            menuPage2: "./img/speisekarte2.png",
             heroBackground: "./img/hero-bild.png", 
             storyImage: "./img/kaffeetasse.png", 
             heroPattern: "./img/hero-pattern.png", 
@@ -50,27 +49,18 @@
     </script>
 
     <style>
-        /* Mobile Fixes für Android */
-        :root {
-            --vh: 1vh;
-        }
-
         body { 
-            overflow: hidden; 
+            overflow: hidden; /* Initial gesperrt für das Intro */
             background-color: #0F0F0F; 
-            font-family: ui-sans-serif, system-ui, sans-serif !important;
-            -webkit-tap-highlight-color: transparent; /* Entfernt blauen Kasten beim Klicken auf Android */
+            font-family: ui-sans-serif, system-ui, sans-serif !important; 
         }
-
         h1, h2, h3, h4, .font-serif { 
             font-family: ui-serif, Georgia, serif !important; 
         }
 
-        /* Intro Animation */
+        /* --- EPISCHES INTRO STYLES --- */
         #intro-overlay {
             background-color: #0F0F0F;
-            height: 100vh;
-            height: calc(var(--vh, 1vh) * 100);
             transition: opacity 1s cubic-bezier(0.7, 0, 0.3, 1), transform 1s cubic-bezier(0.7, 0, 0.3, 1);
         }
 
@@ -94,35 +84,39 @@
             transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1);
         }
 
-        /* Content Reveal */
+        /* --- CONTENT REVEAL --- */
         #main-content {
             opacity: 0;
             transition: opacity 1.2s ease;
-            display: none;
+            display: none; /* Erst nach Intro auf block setzen */
         }
 
-        #main-content.layout-ready { display: block; }
-        #main-content.visible { opacity: 1; }
+        #main-content.layout-ready {
+            display: block;
+        }
 
-        /* Utilities */
+        #main-content.visible {
+            opacity: 1;
+        }
+
+        /* --- UTILITIES --- */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
         .reveal { 
             opacity: 0; 
-            transform: translateY(20px); 
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
+            transform: translateY(30px); 
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); 
         }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Parallax Fix für Mobile Android/iOS */
         .parallax { 
             background-position: center; 
             background-repeat: no-repeat; 
             background-size: cover; 
             background-attachment: scroll; 
         }
-        @media (min-width: 1024px) { 
+        @media (min-width: 768px) { 
             .parallax { background-attachment: fixed; } 
         }
 
@@ -135,19 +129,13 @@
         
         .map-filter { filter: grayscale(100%) invert(92%) contrast(83%); }
         .page-hidden { display: none !important; }
-
-        /* Android Browser Height Fix */
-        .min-h-screen-fix {
-            min-height: 100vh;
-            min-height: calc(var(--vh, 1vh) * 100);
-        }
     </style>
 </head>
 <body class="text-mokka-paper antialiased">
 
-    <!-- INTRO OVERLAY -->
+    <!-- EPISCHES INTRO OVERLAY -->
     <div id="intro-overlay" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#0F0F0F]">
-        <div class="text-center px-4">
+        <div class="text-center">
             <div class="mb-4">
                 <h1 class="font-serif text-3xl md:text-5xl lg:text-6xl text-white tracking-[0.2em] md:tracking-[0.3em]">
                     <span class="letter-animate">M</span>
@@ -167,10 +155,10 @@
     <!-- HAUPTINHALT -->
     <div id="main-content">
         <!-- Navigation -->
-        <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-4 md:py-6 px-6 md:px-12 bg-white text-mokka-coffee shadow-sm">
+        <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6 px-6 md:px-12 bg-white text-mokka-coffee shadow-sm">
             <div class="max-w-7xl mx-auto flex justify-between items-center">
                 <a href="#" onclick="navigateToHome(event)" class="block hover:opacity-80 transition-opacity duration-300">
-                    <img id="nav-logo" src="" alt="Mokka Logo" class="h-10 md:h-12 w-auto object-contain">
+                    <img id="nav-logo" src="" alt="Mokka Logo" class="h-12 w-auto object-contain">
                 </a>
                 <div class="hidden md:flex space-x-12 items-center font-sans">
                     <a href="#speisekarte" class="text-[10px] uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee font-bold">Speisekarte</a>
@@ -178,41 +166,41 @@
                     <a href="#process" class="text-[10px] uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee">Handwerk</a>
                     <a href="#location" class="text-[10px] uppercase tracking-[0.2em] hover-underline-gold text-mokka-coffee">Standort</a>
                 </div>
-                <!-- Mobile Button mit größerem Touch-Target -->
-                <button class="md:hidden text-mokka-coffee p-3 -mr-3" onclick="toggleMobileMenu()">
-                    <i data-lucide="menu" class="w-7 h-7"></i>
+                <button class="md:hidden text-mokka-coffee p-2" onclick="toggleMobileMenu()">
+                    <i data-lucide="menu" class="w-8 h-8"></i>
                 </button>
             </div>
         </nav>
 
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="fixed inset-0 bg-[#0F0F0F] z-[100] transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center">
-            <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-white/50 p-4">
-                <i data-lucide="x" class="w-9 h-9"></i>
+            <button onclick="toggleMobileMenu()" class="absolute top-8 right-8 text-white/50 hover:text-white">
+                <i data-lucide="x" class="w-10 h-10"></i>
             </button>
-            <div class="flex flex-col space-y-10 text-center">
+            <div class="flex flex-col space-y-8 text-center">
                 <a href="#" onclick="toggleMobileMenu(); navigateToHome(event)" class="text-3xl text-white">Startseite</a>
                 <a href="#speisekarte" onclick="toggleMobileMenu()" class="text-3xl text-white font-serif italic text-mokka-gold">Speisekarte</a>
                 <a href="#story" onclick="toggleMobileMenu()" class="text-3xl text-white">Geschichte</a>
                 <a href="#location" onclick="toggleMobileMenu()" class="text-3xl text-white">Standort</a>
-                <div class="w-12 h-[1px] bg-white/20 mx-auto my-2"></div>
+                <div class="w-12 h-[1px] bg-white/20 mx-auto my-4"></div>
                 <a href="#impressum" onclick="toggleMobileMenu()" class="text-sm uppercase tracking-widest text-white/60">Impressum</a>
                 <a href="#datenschutz" onclick="toggleMobileMenu()" class="text-sm uppercase tracking-widest text-white/60">Datenschutz</a>
             </div>
         </div>
 
+        <!-- PAGE CONTAINER -->
         <div id="pages-wrapper">
             <main id="page-home">
                 <!-- HERO -->
-                <header id="hero" class="relative min-h-screen-fix w-full flex flex-col items-center justify-center overflow-hidden pt-20 pb-16">
+                <header id="hero" class="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden pt-32 pb-16">
                     <div class="absolute inset-0 z-0">
                         <div class="absolute inset-0 bg-black/70 z-10"></div>
-                        <img id="img-hero" src="" alt="Hero" class="w-full h-full object-cover">
+                        <img id="img-hero" src="" alt="Hero Hintergrund" class="w-full h-full object-cover">
                     </div>
-                    <div class="relative z-20 text-center px-6 max-w-4xl mx-auto">
-                        <p class="reveal text-mokka-gold text-xs md:text-lg uppercase tracking-[0.25em] mb-4 font-bold">Traditionelle Küche, Modern Serviert</p>
-                        <h1 class="reveal delay-100 text-4xl md:text-7xl lg:text-8xl text-white leading-tight mb-6 font-serif">Geschaffen für <br> <span class="italic text-white/90">Wahre Genießer</span></h1>
-                        <p class="reveal delay-200 text-gray-300 text-sm md:text-base font-light tracking-wide max-w-lg mx-auto leading-relaxed mb-10">Kleine Chargen, ethisch bezogen und in Perfektion geröstet.</p>
+                    <div class="relative z-20 text-center px-4 max-w-4xl mx-auto">
+                        <p class="reveal text-mokka-gold text-sm md:text-lg uppercase tracking-[0.25em] mb-6 font-bold">Traditionelle Küche, Modern Serviert</p>
+                        <h1 class="reveal delay-100 text-5xl md:text-7xl lg:text-8xl text-white leading-none mb-6 font-serif">Geschaffen für <br> <span class="italic text-white/90">Wahre Genießer</span></h1>
+                        <p class="reveal delay-200 text-gray-300 text-sm md:text-base font-light tracking-wide max-w-lg mx-auto leading-relaxed mb-10">Kleine Chargen, ethisch bezogen und in Perfektion geröstet. Erleben Sie die Kunst des Kaffees in ihrer reinsten Form.</p>
                         <div class="reveal delay-300">
                             <a href="#story" class="group inline-block px-8 py-4 border border-mokka-gold/50 hover:border-mokka-gold bg-transparent transition-all duration-300">
                                 <span class="text-white text-xs uppercase tracking-[0.2em] group-hover:text-mokka-gold">Unsere Geschichte</span>
@@ -222,130 +210,160 @@
                 </header>
 
                 <!-- STORY -->
-                <section id="story" class="bg-mokka-cream py-20 md:py-32 px-6 md:px-12 text-mokka-coffee overflow-hidden">
-                    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <section id="story" class="bg-mokka-cream py-32 px-6 md:px-12 text-mokka-coffee">
+                    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                         <div class="reveal">
-                            <h2 class="text-3xl md:text-6xl mb-6 md:mb-8 leading-tight font-serif">Tradition in <br><span class="italic text-mokka-gold">Jeder Bohne</span></h2>
+                            <h2 class="text-4xl md:text-6xl mb-8 leading-tight font-serif">Tradition in <br><span class="italic text-mokka-gold">Jeder Bohne</span></h2>
                             <div class="w-12 h-[1px] bg-mokka-coffee/20 mb-8"></div>
-                            <p class="font-light text-base md:text-lg leading-relaxed text-mokka-coffee/80 mb-6">Mokka begann mit einer einfachen Philosophie: Kaffee ist keine Routine, sondern ein Ritual. Geboren aus dem Wunsch, die langsame Kunst des Röstens zurückzugewinnen.</p>
-                            <p class="font-light text-base md:text-lg leading-relaxed text-mokka-coffee/80">Jede Tasse erzählt die Geschichte der Bauern und unserer Leidenschaft für unverfälschte Qualität.</p>
+                            <p class="font-light text-lg leading-relaxed text-mokka-coffee/80 mb-6">Mokka begann mit einer einfachen Philosophie: Kaffee ist keine Routine, sondern ein Ritual. Geboren aus dem Wunsch, die langsame, bewusste Kunst des Röstens zurückzugewinnen, beziehen wir nur die feinsten Mikrolots von hochgelegenen Plantagen.</p>
+                            <p class="font-light text-lg leading-relaxed text-mokka-coffee/80">Jede Tasse erzählt die Geschichte der Bauern, des Bodens und unserer Leidenschaft für unverfälschte Qualität.</p>
                         </div>
                         <div class="reveal delay-200 relative">
-                            <div class="aspect-[4/5] md:aspect-[3/4] overflow-hidden relative group rounded-sm shadow-2xl">
-                                <img id="img-story" src="" alt="Story" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
-                                <div class="absolute inset-4 border border-white/20 pointer-events-none"></div>
+                            <div class="aspect-[3/4] overflow-hidden relative group">
+                                <img id="img-story" src="" alt="Unsere Geschichte" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                                <div class="absolute top-4 right-4 bottom-4 left-4 border border-white/20 pointer-events-none"></div>
                             </div>
                         </div>
                     </div>
                 </section>
 
                 <!-- PROCESS -->
-                <section id="process" class="bg-mokka-dark py-20 md:py-32 px-6 border-y border-white/5">
+                <section id="process" class="bg-mokka-dark py-32 px-6 border-y border-white/5">
                     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 text-center divide-y md:divide-y-0 md:divide-x divide-white/10">
-                        <div class="reveal py-8 md:py-0 px-4">
+                        <div class="reveal py-8 md:py-0">
                             <div class="mb-6 flex justify-center text-mokka-gold"><i data-lucide="map-pin" class="w-8 h-8 font-thin"></i></div>
-                            <h3 class="text-xl md:text-2xl text-white mb-4 font-serif">Single-Origin</h3>
-                            <p class="text-gray-400 text-sm max-w-xs mx-auto leading-relaxed">Ausschließlich von nachhaltigen Farmen bezogen.</p>
+                            <h3 class="text-2xl text-white mb-4 font-serif">Single-Origin</h3>
+                            <p class="text-gray-400 text-sm max-w-xs mx-auto leading-relaxed">Ausschließlich von nachhaltigen Farmen bezogen, die unsere Werte für fairen Handel teilen.</p>
                         </div>
-                        <div class="reveal delay-100 py-8 md:py-0 px-4">
+                        <div class="reveal delay-100 py-8 md:py-0">
                             <div class="mb-6 flex justify-center text-mokka-gold"><i data-lucide="award" class="w-8 h-8 font-thin"></i></div>
-                            <h3 class="text-xl md:text-2xl text-white mb-4 font-serif">Handwerkskunst</h3>
-                            <p class="text-gray-400 text-sm max-w-xs mx-auto leading-relaxed">Geröstet in kleinen Chargen für maximale Frische.</p>
+                            <h3 class="text-2xl text-white mb-4 font-serif">Handwerkskunst</h3>
+                            <p class="text-gray-400 text-sm max-w-xs mx-auto leading-relaxed">Geröstet in kleinen Chargen in unserer Manufaktur für ein Aroma, das seinesgleichen sucht.</p>
                         </div>
-                        <div class="reveal delay-200 py-8 md:py-0 px-4">
+                        <div class="reveal delay-200 py-8 md:py-0">
                             <div class="mb-6 flex justify-center text-mokka-gold"><i data-lucide="gem" class="w-8 h-8 font-thin"></i></div>
-                            <h3 class="text-xl md:text-2xl text-white mb-4 font-serif">Purer Genuss</h3>
-                            <p class="text-gray-400 text-sm max-w-xs mx-auto leading-relaxed">Keine Zusätze, nur das reine Aroma der Natur.</p>
+                            <h3 class="text-2xl text-white mb-4 font-serif">Purer Genuss</h3>
+                            <p class="text-gray-400 text-sm max-w-xs mx-auto leading-relaxed">Keine Zusätze, keine Kompromisse. Nur der ehrliche, unverfälschte Geschmack der Natur.</p>
                         </div>
                     </div>
                 </section>
 
                 <!-- BANNER -->
-                <section id="banner-parallax" class="h-[50vh] md:h-[60vh] parallax flex items-center justify-center relative">
+                <section id="banner-parallax" class="h-[60vh] parallax flex items-center justify-center relative">
                     <div class="absolute inset-0 bg-black/60"></div>
                     <div class="relative z-10 text-center max-w-2xl px-6">
-                        <i data-lucide="quote" class="w-7 h-7 text-mokka-gold mx-auto mb-6 opacity-80"></i>
-                        <h3 class="text-2xl md:text-5xl text-white leading-tight italic font-serif">"Kaffee ist eine Sprache für sich."</h3>
-                        <p class="mt-4 text-[10px] md:text-sm uppercase tracking-widest text-white/70">— Jackie Chan</p>
+                        <i data-lucide="quote" class="w-8 h-8 text-mokka-gold mx-auto mb-6 opacity-80"></i>
+                        <h3 class="text-3xl md:text-5xl text-white leading-tight italic font-serif">"Kaffee ist eine Sprache für sich."</h3>
+                        <p class="mt-4 text-sm uppercase tracking-widest text-white/70">— Jackie Chan</p>
                     </div>
                 </section>
 
                 <!-- LOCATION -->
-                <section id="location" class="bg-mokka-dark py-20 md:py-32 px-6">
-                    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-start">
-                        <div class="w-full lg:w-1/3 reveal">
-                            <h2 class="text-3xl md:text-5xl text-white mb-6 font-serif">Besuchen Sie Uns</h2>
+                <section id="location" class="bg-mokka-dark py-32 px-6">
+                    <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-16 items-start">
+                        <div class="w-full md:w-1/3 reveal">
+                            <h2 class="text-4xl md:text-5xl text-white mb-6 font-serif">Besuchen Sie Uns</h2>
                             <div class="w-12 h-[1px] bg-mokka-gold mb-8"></div>
-                            <p class="text-gray-400 mb-8 text-sm md:text-base leading-relaxed">Besuchen Sie unsere Manufaktur in Neuwied.</p>
+                            <p class="text-gray-400 mb-8 leading-relaxed">Erleben Sie unsere Röstungen vor Ort in unserer Manufaktur in Neuwied. Genießen Sie eine Tasse in entspannter Atmosphäre.</p>
+                            
                             <div class="flex items-start gap-4 mb-10">
                                 <i data-lucide="map-pin" class="w-5 h-5 text-mokka-gold mt-1"></i>
-                                <p class="text-gray-300 text-sm leading-relaxed">Mittelstraße 105<br>56564 Neuwied, Deutschland</p>
+                                <p class="text-gray-300 text-sm leading-relaxed">Mittelstraße 105<br>56564 Neuwied<br>Deutschland</p>
                             </div>
+
+                            <!-- ÖFFNUNGSZEITEN -->
+                            <div class="mb-10 reveal delay-100">
+                                <h3 class="text-white font-serif text-xl mb-4 flex items-center gap-2">
+                                    <i data-lucide="clock" class="w-5 h-5 text-mokka-gold"></i>
+                                    Öffnungszeiten
+                                </h3>
+                                <div class="space-y-2 text-sm text-gray-400 font-sans max-w-xs">
+                                    <div class="flex justify-between border-b border-white/5 pb-1">
+                                        <span>Montag — Donnerstag</span>
+                                        <span class="text-mokka-gold font-medium">09:00 — 20:30</span>
+                                    </div>
+                                    <div class="flex justify-between border-b border-white/5 pb-1">
+                                        <span>Freitag</span>
+                                        <span class="text-mokka-gold font-medium">09:00 — 21:00</span>
+                                    </div>
+                                    <div class="flex justify-between border-b border-white/5 pb-1">
+                                        <span>Samstag</span>
+                                        <span class="text-mokka-gold font-medium">10:00 — 21:00</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Sonntag</span>
+                                        <span class="text-mokka-gold font-medium">16:00 — 20:30</span>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="grid gap-4">
-                                <a href="tel:015560330735" class="bg-[#1A1A1A] p-5 border border-white/10 text-white hover:border-mokka-gold transition-all flex items-center gap-4 group rounded-sm">
-                                    <div class="bg-mokka-gold/10 p-3 rounded-full group-hover:bg-mokka-gold group-hover:text-black transition-colors"><i data-lucide="phone" class="w-5 h-5"></i></div>
-                                    <div><p class="text-[9px] uppercase tracking-widest text-gray-500">Telefon</p><p class="text-base md:text-lg font-serif">015560 330735</p></div>
+                                <a href="tel:015560330735" class="bg-[#1A1A1A] p-6 border border-white/10 text-white hover:border-mokka-gold transition-all duration-300 flex items-center gap-4 group">
+                                    <div class="bg-mokka-gold/10 p-3 rounded-full group-hover:bg-mokka-gold group-hover:text-black transition-colors">
+                                        <i data-lucide="phone" class="w-5 h-5"></i>
+                                    </div>
+                                    <div><p class="text-[10px] uppercase text-gray-500">Telefon</p><p class="text-lg font-serif">015560 330735</p></div>
                                 </a>
-                                <a href="mailto:info@mokka-coffee.de" class="bg-[#1A1A1A] p-5 border border-white/10 text-white hover:border-mokka-gold transition-all flex items-center gap-4 group rounded-sm">
-                                    <div class="bg-mokka-gold/10 p-3 rounded-full group-hover:bg-mokka-gold group-hover:text-black transition-colors"><i data-lucide="mail" class="w-5 h-5"></i></div>
-                                    <div><p class="text-[9px] uppercase tracking-widest text-gray-500">E-Mail</p><p class="text-base md:text-lg font-serif text-sm">info@mokka-coffee.de</p></div>
+                                <a href="mailto:info@mokka-coffee.de" class="bg-[#1A1A1A] p-6 border border-white/10 text-white hover:border-mokka-gold transition-all duration-300 flex items-center gap-4 group">
+                                    <div class="bg-mokka-gold/10 p-3 rounded-full group-hover:bg-mokka-gold group-hover:text-black transition-colors">
+                                        <i data-lucide="mail" class="w-5 h-5"></i>
+                                    </div>
+                                    <div><p class="text-[10px] uppercase text-gray-500">E-Mail</p><p class="text-lg font-serif">info@mokka-coffee.de</p></div>
                                 </a>
                             </div>
                         </div>
-                        <div class="w-full lg:w-2/3 h-[350px] md:h-[500px] border border-white/10 overflow-hidden bg-[#1A1A1A] reveal delay-200 rounded-sm">
-                            <img id="img-map" src="" alt="Karte" class="w-full h-full object-cover map-filter grayscale">
+                        <div class="w-full md:w-2/3 h-[500px] border border-white/10 overflow-hidden bg-[#1A1A1A] reveal delay-200">
+                            <img id="img-map" src="" alt="Standortkarte" class="w-full h-full object-cover map-filter grayscale">
                         </div>
                     </div>
                 </section>
             </main>
 
             <!-- SUB-PAGES -->
-            <section id="page-menu" class="page-hidden pt-32 pb-20 px-4 min-h-screen-fix bg-mokka-dark flex flex-col items-center">
-                <h1 class="text-4xl md:text-5xl text-white mb-4 font-serif">Speisekarte</h1>
-                <p class="text-mokka-gold uppercase tracking-widest text-[10px] mb-12 italic">Handverlesene Köstlichkeiten</p>
-                <div class="flex flex-col gap-8 w-full max-w-4xl px-2">
-                    <img id="img-menu-1" src="" alt="Menü 1" class="w-full h-auto border border-white/5 shadow-2xl rounded-sm">
-                    <img id="img-menu-2" src="" alt="Menü 2" class="w-full h-auto border border-white/5 shadow-2xl rounded-sm">
+            <section id="page-menu" class="page-hidden pt-32 pb-20 px-4 min-h-screen bg-mokka-dark flex flex-col items-center">
+                <h1 class="text-5xl text-white mb-4 font-serif">Speisekarte</h1>
+                <p class="text-mokka-gold uppercase tracking-widest text-sm mb-12 italic">Handverlesene Köstlichkeiten</p>
+                <div class="flex flex-col gap-12 w-full max-w-4xl">
+                    <div class="bg-[#1A1A1A] p-2 shadow-2xl border border-white/5"><img id="img-menu-1" src="" alt="Menü 1" class="w-full h-auto"></div>
+                    <div class="bg-[#1A1A1A] p-2 shadow-2xl border border-white/5"><img id="img-menu-2" src="" alt="Menü 2" class="w-full h-auto"></div>
                 </div>
-                <div class="mt-16"><a href="#" onclick="navigateToHome(event)" class="text-mokka-gold border-b border-mokka-gold pb-1 uppercase tracking-widest text-[10px]">← Startseite</a></div>
+                <div class="mt-16"><a href="#" onclick="navigateToHome(event)" class="text-mokka-gold hover:text-white border-b border-mokka-gold pb-1 uppercase tracking-widest text-xs transition-colors">← Zurück zur Startseite</a></div>
             </section>
 
-            <section id="page-impressum" class="page-hidden pt-32 pb-20 px-6 min-h-screen-fix bg-mokka-dark">
+            <section id="page-impressum" class="page-hidden pt-32 pb-20 px-6 min-h-screen bg-mokka-dark">
                 <div class="max-w-3xl mx-auto">
-                    <h1 class="text-3xl md:text-5xl text-white mb-10 font-serif text-center md:text-left">Impressum</h1>
-                    <div class="space-y-6 text-gray-400 font-light text-sm md:text-base">
-                        <div class="bg-[#1A1A1A] p-6 md:p-8 border border-white/5 rounded-sm">
-                            <h3 class="text-white font-bold mb-4 uppercase text-[10px] tracking-widest">Angaben gemäß § 5 TMG</h3>
-                            <p class="mb-2">Mokka Coffee [Name & Rechtsform]</p>
-                            <p class="mb-2">Mittelstraße 105, 56564 Neuwied</p>
-                            <p class="mt-6 font-bold text-white">Vertretung:</p>
-                            <p>[Vorname Nachname]</p>
+                    <h1 class="text-3xl md:text-5xl text-white mb-12 font-serif text-center md:text-left">Impressum</h1>
+                    <div class="space-y-8 text-gray-400 font-light">
+                        <div class="bg-[#1A1A1A] p-8 border border-white/5">
+                            <h3 class="text-white font-bold mb-4 uppercase text-xs">Angaben gemäß § 5 TMG</h3>
+                            <p>Mokka Coffee [NAME & RECHTSFORM]<br>Mittelstraße 105, 56564 Neuwied</p>
+                            <p class="mt-6"><strong>Vertretung:</strong><br>[VORNAME NACHNAME]</p>
                         </div>
                     </div>
-                    <div class="mt-12 text-center md:text-left"><a href="#" onclick="navigateToHome(event)" class="text-mokka-gold border-b border-mokka-gold pb-1 uppercase tracking-widest text-[10px]">← Startseite</a></div>
+                    <div class="mt-12 text-center md:text-left"><a href="#" onclick="navigateToHome(event)" class="text-mokka-gold border-b border-mokka-gold pb-1 uppercase tracking-widest text-xs transition-colors">← Startseite</a></div>
                 </div>
             </section>
 
-            <section id="page-datenschutz" class="page-hidden pt-32 pb-20 px-6 min-h-screen-fix bg-mokka-dark">
+            <section id="page-datenschutz" class="page-hidden pt-32 pb-20 px-6 min-h-screen bg-mokka-dark">
                 <div class="max-w-3xl mx-auto">
                     <h1 class="text-3xl md:text-5xl text-white mb-10 font-serif text-center md:text-left">Datenschutz</h1>
-                    <div class="bg-[#1A1A1A] p-6 md:p-8 border border-white/5 rounded-sm text-gray-400 text-sm">
-                        <p class="mb-4">Diese Webseite arbeitet lokal. Es werden keine Cookies für Tracking-Zwecke verwendet.</p>
-                        <p>Verantwortlich: Mokka Coffee, Neuwied.</p>
+                    <div class="bg-[#1A1A1A] p-8 border border-white/5 text-gray-400 text-sm">
+                        <p>Diese Webseite arbeitet lokal. In Produktion sollten CDNs lokal gehostet werden.</p>
+                        <p class="mt-4">Verantwortlich: Mokka Coffee, Neuwied.</p>
                     </div>
-                    <div class="mt-12 text-center md:text-left"><a href="#" onclick="navigateToHome(event)" class="text-mokka-gold border-b border-mokka-gold pb-1 uppercase tracking-widest text-[10px]">← Startseite</a></div>
+                    <div class="mt-12 text-center md:text-left"><a href="#" onclick="navigateToHome(event)" class="text-mokka-gold border-b border-mokka-gold pb-1 uppercase tracking-widest text-xs transition-colors">← Startseite</a></div>
                 </div>
             </section>
         </div>
 
         <!-- FOOTER -->
         <footer class="bg-white border-t border-black/5 py-16 px-6 text-mokka-coffee text-center mt-auto">
-            <img id="footer-logo" src="" alt="Mokka" class="h-8 w-auto mx-auto mb-6 opacity-80">
-            <p class="text-[10px] uppercase tracking-widest mb-8 opacity-60">© 2026 Mokka Coffee Co. Neuwied.</p>
-            <div class="flex flex-wrap justify-center gap-6 md:gap-12 text-[9px] font-bold uppercase tracking-widest">
-                <a href="#speisekarte" class="hover:text-mokka-gold transition-colors p-2">Menü</a>
-                <a href="#impressum" class="hover:text-mokka-gold transition-colors p-2">Impressum</a>
-                <a href="#datenschutz" class="hover:text-mokka-gold transition-colors p-2">Datenschutz</a>
+            <img id="footer-logo" src="" alt="Mokka" class="h-10 w-auto mx-auto mb-6 opacity-80">
+            <p class="text-xs uppercase tracking-widest mb-8 opacity-60">© 2026 Mokka Coffee Co. Neuwied.</p>
+            <div class="flex justify-center gap-12 text-[10px] font-bold uppercase tracking-widest">
+                <a href="#speisekarte" class="hover:text-mokka-gold transition-colors">Menü</a>
+                <a href="#impressum" class="hover:text-mokka-gold transition-colors">Impressum</a>
+                <a href="#datenschutz" class="hover:text-mokka-gold transition-colors">Datenschutz</a>
             </div>
         </footer>
     </div>
@@ -353,14 +371,6 @@
     <!-- SCRIPTS -->
     <script>
         let isIntroFinished = false;
-
-        // Android Viewport Height Fix
-        function updateViewportHeight() {
-            let vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh', `${vh}px`);
-        }
-        window.addEventListener('resize', updateViewportHeight);
-        updateViewportHeight();
 
         document.addEventListener('DOMContentLoaded', () => {
             const setSrc = (id, src) => { const el = document.getElementById(id); if (el) el.src = src; };
@@ -448,7 +458,7 @@
         
         const obs = new IntersectionObserver((entries) => { 
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); }); 
-        }, { threshold: 0.05 });
+        }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
         
         window.addEventListener('scroll', () => {
@@ -461,4 +471,3 @@
     </script>
 </body>
 </html>
-
